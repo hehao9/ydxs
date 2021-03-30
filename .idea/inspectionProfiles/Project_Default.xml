@@ -1,0 +1,26 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="12">
+            <item index="0" class="java.lang.String" itemvalue="song-id" />
+            <item index="1" class="java.lang.String" itemvalue="album_pic" />
+            <item index="2" class="java.lang.String" itemvalue="song_id" />
+            <item index="3" class="java.lang.String" itemvalue="song-name" />
+            <item index="4" class="java.lang.String" itemvalue="song-singer" />
+            <item index="5" class="java.lang.String" itemvalue="album-pic" />
+            <item index="6" class="java.lang.String" itemvalue="song-duration" />
+            <item index="7" class="java.lang.String" itemvalue="tab-link" />
+            <item index="8" class="java.lang.String" itemvalue="tab-id" />
+            <item index="9" class="java.lang.String" itemvalue="song-platform" />
+            <item index="10" class="java.lang.String" itemvalue="song-hash" />
+            <item index="11" class="java.lang.String" itemvalue="song-album-id" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+  </profile>
+</component>

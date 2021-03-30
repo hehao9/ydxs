@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>H站</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/mushroom.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery.tabslet.js/1.4.4/jquery.tabslet.min.js"></script>
+</head>
+<body>
+<div class="d-flex flex-column" style="position: fixed; top: 0; right: 0; left: 0; bottom: 0;">
+    <div id="top-bar" class="d-flex" style="background-color: #242424;">
+        <a class="" href="/">H站</a>
+        <a class="" href="/music">音乐</a>
+        <a class="" href="/image">图片</a>
+    </div>
+</div>
+</body>
+<script>
+  function initFingerprintJS() {
+    FingerprintJS.load().then(fp => {
+      fp.get().then(result => {
+        $('body').append('<input id="visitor_id" type="hidden" value="' + result.visitorId + '" />');
+      });
+    });
+  }
+</script>
+<script async src="//cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js" onload="initFingerprintJS()"></script>
+</html>

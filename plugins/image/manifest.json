@@ -1,0 +1,44 @@
+{
+  "manifest_version": 2,
+  "name": "image",
+  "version": "1.0.0",
+  "description": "简单、快速地收藏你喜欢的图片。",
+  "icons": {
+    "84": "mushroom.png"
+  },
+  "browser_action": {
+    "default_icon": "mushroom.png",
+    "default_title": "我的插件",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "style.css"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    "inject.js"
+  ],
+  "permissions": [
+    "contextMenus",
+    "tabs",
+    "notifications",
+    "webRequestBlocking",
+    "storage"
+  ]
+}
