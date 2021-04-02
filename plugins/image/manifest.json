@@ -8,7 +8,7 @@
   },
   "browser_action": {
     "default_icon": "乌龟.png",
-    "default_title": "我的插件",
+    "default_title": "图片收藏",
     "default_popup": "popup.html"
   },
   "background": {
@@ -32,7 +32,8 @@
     }
   ],
   "web_accessible_resources": [
-    "inject.js"
+    "inject.js",
+    "fp.min.js"
   ],
   "permissions": [
     "contextMenus",

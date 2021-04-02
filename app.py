@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 from flask import render_template
+from flask_cors import cross_origin
 import netease_cloud_music
 import kugou_music
 from sqlite3_help import Sqlite3DB
@@ -51,6 +52,24 @@ def music_detail():
 @app.route('/image')
 def image():
     return render_template('image.html')
+
+
+@app.route('/image/list', methods=['post'])
+def image_list():
+    db = Sqlite3DB()
+    results = db.query_data(f"select * from image_list where visitor_id = '{request.form['visitor_id']}'")
+    db.close()
+    return jsonify(results)
+
+
+@app.route('/image/list/add', methods=['post'])
+@cross_origin(supports_credentials=True)
+def image_list_add():
+    print(request.form['visitor_id'])
+    db = Sqlite3DB()
+    db.insert_data("image_list", {'visitor_id': request.form['visitor_id'], 'link': request.form['link']})
+    db.close()
+    return jsonify({'status': 1, 'msg': 'success'})
 
 
 if __name__ == '__main__':

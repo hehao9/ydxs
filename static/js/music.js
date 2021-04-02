@@ -14,7 +14,7 @@ $(document).ready(function() {
         $.post("/music/play/list", {visitor_id: $('#visitor_id').val()}, function(play_list){
             var html = "";
             $.each(play_list, function(i, v) {
-                html = '<tr style="cursor: pointer;" song-id="' + v.song_id + '"' +
+                html += '<tr style="cursor: pointer;" song-id="' + v.song_id + '"' +
                 'song-name="' + v.song_name + '"' +
                 'song-singer="' + v.song_singer + '"' +
                 'song-duration="' + v.song_duration + '"' +
