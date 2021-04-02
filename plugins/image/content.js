@@ -9,16 +9,25 @@
 
     function addBtn() {
         setTimeout(function(){
-            if($('div.pin > div.actions > div.left').length > 0) {
-                $('div.pin > div.actions > div.left').each(function(){
-                    if($(this).find('a.image-plugin').length == 0) {
-                        $(this).prepend('<a class="image-plugin repin pin-default btn btn14 rbtn" onclick="clickFun(this, 1);"><span class="text">收藏</span></a>');
+            let elements = document.querySelectorAll('div.pin > div.actions > div.left');
+            if(elements.length > 0) {
+                [].forEach.call(elements, function(element) {
+                    if(element.querySelectorAll('a.image-plugin').length == 0) {
+                        let btn = document.createElement('a');
+                        btn.setAttribute('class', 'image-plugin repin pin-default btn btn14 rbtn');
+                        btn.setAttribute('onclick', 'clickFun(this, 1);');
+                        btn.innerHTML = '<span class="text">收藏</span>';
+                        element.appendChild(btn);
                     }
                 });
             }
-            if($('div.tool-bar').length > 0) {
-                if($('div.tool-bar > a.image-plugin').length == 0) {
-                    $('div.tool-bar').prepend('<a class="image-plugin repin pin-default btn btn14 rbtn" onclick="clickFun(this, 2);"><span class="text">收藏</span></a>');
+            if(document.querySelectorAll('div.tool-bar').length > 0) {
+                if(document.querySelectorAll('div.tool-bar > a.image-plugin').length == 0) {
+                    let btn = document.createElement('a');
+                    btn.setAttribute('class', 'image-plugin repin pin-default btn btn14 rbtn');
+                    btn.setAttribute('onclick', 'clickFun(this, 2);');
+                    btn.innerHTML = '<span class="text">收藏</span>';
+                    document.querySelector('div.tool-bar').appendChild(btn);
                 }
             }
             addBtn();

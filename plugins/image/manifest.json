@@ -4,10 +4,10 @@
   "version": "1.0.0",
   "description": "简单、快速地收藏你喜欢的图片。",
   "icons": {
-    "84": "mushroom.png"
+    "84": "乌龟.png"
   },
   "browser_action": {
-    "default_icon": "mushroom.png",
+    "default_icon": "乌龟.png",
     "default_title": "我的插件",
     "default_popup": "popup.html"
   },
@@ -23,7 +23,6 @@
         "https://huaban.com/*"
       ],
       "js": [
-        "jquery.min.js",
         "content.js"
       ],
       "css": [
