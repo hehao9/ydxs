@@ -20,7 +20,8 @@ function clickFun(obj , type) {
     }
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", "http://127.0.0.1:5000/image/list/add", true);
-    xmlhttp.send(JSON.stringify({visitor_id: document.querySelector('#visitor_id').value, link: src}));
+    xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    xmlhttp.send('visitor_id='+document.querySelector('#visitor_id').value+'&link='+src)
     xmlhttp.onreadystatechange = function() {
         if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
             console.log(xmlhttp.responseText);

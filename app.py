@@ -63,9 +63,8 @@ def image_list():
 
 
 @app.route('/image/list/add', methods=['post'])
-@cross_origin(supports_credentials=True)
+@cross_origin()
 def image_list_add():
-    print(request.form['visitor_id'])
     db = Sqlite3DB()
     db.insert_data("image_list", {'visitor_id': request.form['visitor_id'], 'link': request.form['link']})
     db.close()
