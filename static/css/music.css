@@ -100,7 +100,6 @@ input#s_song_name:focus {
 .song_table td, .song_table th {
     padding: .25rem;
     vertical-align: middle;
-    border-top: 1px solid #242424;
 }
 .song_table th {
     font-weight: unset;
