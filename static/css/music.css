@@ -91,7 +91,7 @@ input#s_song_name:focus {
 }
 #s_song_name{
     color: #e8e8e8;
-    background-color: #242424;
+    background-color: #2d2d2d;
 }
 .song_table {
     color: #e8e8e8;
@@ -106,10 +106,10 @@ input#s_song_name:focus {
     color: #989898;
 }
 .song_table tbody tr:hover {
-    background-color: #242424;
+    background-color: #131313;
 }
 .playlist-box .song_table tbody tr:hover {
-    background-color: #1b1b1c;
+    background-color: #131313;
 }
 #page-lyric {
     display: none;
@@ -117,7 +117,8 @@ input#s_song_name:focus {
     line-height: 30px;
 }
 .playlist-box {
-    background-color: #242424;
+    box-shadow: 0px 0px 5px #000;
+    background-color: #1b1b1c;
     display: none;
 }
 .playing {
@@ -147,5 +148,5 @@ input#s_song_name:focus {
 }
 .s_song_tabs > ul > li.active > a {
     color: #28a745;
-    background-color: #2d2d2d;
+    background-color: #1b1b1c;
 }

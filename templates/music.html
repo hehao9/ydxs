@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/mushroom.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css">
-    <link rel="stylesheet" href="https://at.alicdn.com/t/font_2393058_cmjwxjls23q.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_2393058_ggbz2ut797t.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/music.css') }}">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
@@ -23,7 +23,7 @@
         <div class="flex-grow-1" style="height: 100%;">
             <div id="search_list" style="height: 100%;">
                 <div class="d-flex flex-column" style="height: 100%;">
-                    <div class="d-flex" style="background-color: #242424; padding: 7px 15px 4px 15px; border-bottom: 2px solid #28a745;">
+                    <div class="d-flex" style="background-color: #2d2d2d; padding: 0px 15px 0px 15px; box-shadow: 0px 0px 5px #000;">
                         <div class="align-self-center mr-2">
                             <i class="iconfont icon-search" style="color: #989898; font-size: 20px;"></i></div>
                         <input id="s_song_name" type="text" class="border-0 flex-grow-1"
@@ -34,7 +34,7 @@
             </div>
             <div id="page-lyric" style="height: 100%;">
                 <div class="d-flex flex-column" style="height: 100%;">
-                    <div class="d-flex justify-content-center" style="font-size: 15px; background-color: #242424;">
+                    <div class="d-flex justify-content-center" style="font-size: 15px; box-shadow: 0px 0px 5px #000;">
                         <div class="song-name" style="color: #e8e8e8;"></div>
                         <div class="song-singer ml-2" style="color: #9b9b9b;"></div>
                     </div>
@@ -44,7 +44,7 @@
         </div>
         <div class="playlist-box" style="height: 100%;">
             <div class="d-flex flex-column" style="height: 100%;">
-                <div class="d-flex justify-content-between" style="padding: 0px 7px; background-color: #242424; line-height: 30px;">
+                <div class="d-flex justify-content-between" style="padding: 0px 7px; line-height: 30px;">
                     <div style="color: #e8e8e8;">播放列表 (<span id="playlist-count">0</span>)</div>
                     <div><i class="iconfont icon-del" title="清空列表"></i></div>
                 </div>
@@ -56,7 +56,7 @@
             </div>
         </div>
     </div>
-    <div id="bottom-bar" style="background-color: #242424; position: relative; padding: 7px 15px;">
+    <div id="bottom-bar" style="background-color: #1b1b1c; position: relative; padding: 0px 15px; box-shadow: 0px 0px 5px #000;">
         <audio id="audio" src=""></audio>
         <div id="cur_title_line">
             <div class="d-flex justify-content-center">
@@ -64,13 +64,13 @@
                 <div class="song-singer ml-2" style="color: #9b9b9b;"></div>
             </div>
         </div>
-        <div class="d-flex">
+        <div class="d-flex" style="line-height: 1px;">
             <div id="song-currentTime" class="mr-2" style="color: #a1a1a1; font-size: 12px;">00:00</div>
             <div class="flex-grow-1 align-self-center">
                 <input id="song-progress-input" data-slider-id='song-progress'/>
             </div>
             <div id="song-duration" class="ml-2" style="color: #797979; font-size: 12px;">00:00</div>
-            <div class="ml-2 align-self-center" style="font-size: 12px; position: relative;">
+            <div class="ml-2 align-self-center" style="font-size: 12px; position: relative; display: none;">
                 <i id="volume" class="iconfont icon-volume-1"></i>
                 <div class="volume-box">
                     <div id="vol-val">50</div>
@@ -78,7 +78,7 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-center" style="height: 40px;">
+        <div class="d-flex justify-content-center">
             <div class="align-self-center">
                 <i id="play-rule" class="iconfont icon-list-loop" title="列表循环"></i>
             </div>
@@ -86,8 +86,7 @@
                 <i class="iconfont icon-prev"></i>
             </div>
             <div class="ml-4 align-self-center">
-                <i id="play-pause" class="iconfont icon-play"
-                   style="background-color: #2d2d2d; padding: 10px; border-radius: 20px;"></i>
+                <i id="play-pause" class="iconfont icon-play"></i>
             </div>
             <div class="ml-4 align-self-center">
                 <i class="iconfont icon-next"></i>
