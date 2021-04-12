@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>H站</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/mushroom.png') }}" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
-    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://cdn.staticfile.org/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
-    <script src="https://cdn.staticfile.org/jquery.tabslet.js/1.4.4/jquery.tabslet.min.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.nicescroll.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.tabslet.min.js') }}"></script>
 </head>
 <body>
 <div class="d-flex flex-column" style="position: fixed; top: 0; right: 0; left: 0; bottom: 0;">
@@ -31,5 +31,5 @@
     });
   }
 </script>
-<script async src="//cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js" onload="initFingerprintJS()"></script>
+<script src="{{ url_for('static', filename='js/fp.min.js') }}" onload="initFingerprintJS()"></script>
 </html>

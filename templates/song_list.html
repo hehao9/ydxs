@@ -1,7 +1,7 @@
-<div class='s_song_tabs d-flex flex-column' style="height: 100%;">
-    <ul class="d-flex" style="box-shadow: 0px 0px 5px #000;">
+<div class='s_song_tabs d-flex' style="height: 100%;">
+    <ul class="d-flex flex-column" style="box-shadow: 0px 0px 5px #000;">
         {% for result in results %}
-        <li class="flex-fill"><a href="#{{ result.alias }}">{{ result.platform }}</a></li>
+        <li class=""><a href="#{{ result.alias }}">{{ result.platform }}</a></li>
         {% endfor %}
     </ul>
     {% for result in results %}

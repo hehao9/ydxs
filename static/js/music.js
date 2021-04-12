@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $.ajaxSettings.async = false;
+    //$.ajaxSettings.async = false;
     $('#s_song_name').focus();
     var audio = document.getElementById('audio');
     audio.volume = 0.5;
@@ -200,7 +200,7 @@ $(document).ready(function() {
                 $.get('/music/search/' + $(this).val(), function(song_results) {
                     $('#s_song_results').html(song_results);
                     $('.s_song_tabs').tabslet({
-                        mouseevent: 'hover',
+                        mouseevent: 'click',
                         animation: false
                     });
                     $('.s_song_tabs > div').niceScroll({
