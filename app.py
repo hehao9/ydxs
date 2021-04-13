@@ -29,11 +29,11 @@ def music_play_list():
 @app.route('/music/search/<song_name>')
 def music_search(song_name):
     results = [{
-        'platform': '网易云音乐',
+        'platform': '网易云',
         'alias': 'netease-cloud',
         'song_list': netease_cloud_music.get_music_search(song_name),
     }, {
-        'platform': '酷狗音乐',
+        'platform': '酷狗',
         'alias': 'kugou',
         'song_list': kugou_music.get_music_search(song_name),
     }]

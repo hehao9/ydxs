@@ -1,13 +1,13 @@
 <div class='s_song_tabs d-flex' style="height: 100%;">
-    <ul class="d-flex flex-column" style="box-shadow: 0px 0px 5px #000;">
+    <ul class="d-flex flex-column">
         {% for result in results %}
         <li class=""><a href="#{{ result.alias }}">{{ result.platform }}</a></li>
         {% endfor %}
     </ul>
     {% for result in results %}
-    <div id='{{ result.alias }}' class="flex-grow-1" style="padding: 0px 15px 7px 15px;">
+    <div id='{{ result.alias }}' class="flex-grow-1">
         <table class="song_table">
-            <thead>
+            <!-- <thead>
                 <tr style="color: #989898;">
                     <th></th>
                     <th>歌曲标题</th>
@@ -16,14 +16,14 @@
                     <th>时长</th>
                 </tr>
                 </thead>
-            <tbody>
+            <tbody> -->
             {% for song in result.song_list %}
             <tr>
                 <td song-id="{{ song.id }}" song-name="{{ song.name }}" song-singer="{{ song.singer }}"
                     song-duration="{{ song.duration }}" song-platform="{{ result.alias }}"
                     song-album-id="{{ song.album_id }}" song-hash="{{ song.hash }}">
-                    <i class="iconfont icon-play-cicle" style="font-size: 14px;"></i>
-                    <i class="iconfont icon-add" style="font-size: 14px;"></i>
+                    <i class="iconfont icon-play-cicle"></i>
+                    <i class="iconfont icon-add"></i>
                 </td>
                 <td>{{ song.name }}</td>
                 <td>{{ song.singer }}</td>
