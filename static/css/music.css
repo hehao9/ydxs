@@ -1,6 +1,6 @@
 body {
     background-color: #1b1b1c;
-    font-size: 14px!important;
+    font-size: 12px!important;
 }
 input#s_song_name:focus {
     outline: 0;
@@ -10,6 +10,9 @@ input#s_song_name:focus {
     width: 100%;
     height: 1px;
     display: block;
+}
+#song-progress:hover {
+    height: 3px;
 }
 .volume-box {
     text-align: center;
@@ -30,7 +33,7 @@ input#s_song_name:focus {
     height: 100px;
 }
 #song-progress .slider-track {
-    height: 1px;
+    height: inherit;
     margin-top: 0px;
     top: 0;
 }
@@ -45,11 +48,18 @@ input#s_song_name:focus {
     background: #989898;
 }
 #song-progress .slider-handle {
+    display: none;
     margin-left: -3px;
     margin-top: -2px;
-    width: 6px;
-    height: 5px;
+    width: 7px;
+    height: 7px;
     background: #28a745;
+}
+#song-progress:hover .slider-handle {
+    display: block;
+}
+.slider .hide {
+    display: none!important;
 }
 #volume-progress .slider-handle {
     /* display: none; */
@@ -65,7 +75,7 @@ input#s_song_name:focus {
     color: #e8e8e8;
 }
 .icon-play-cicle, .icon-add {
-    font-size: 14px;
+    font-size: 12px;
     color: #989898;
     cursor: pointer;
 }
@@ -91,24 +101,29 @@ input#s_song_name:focus {
 }
 #s_song_name{
     color: #e8e8e8;
-    background-color: #2d2d2d;
+    background-color: #242424;
+    padding-left: 10px;
 }
 .song_table {
     color: #e8e8e8;
     width: 100%;
 }
+.song_table tr {
+    height: 30px;
+}
 .song_table td, .song_table th {
-    padding: .25rem;
+    padding: 0px 10px;
     vertical-align: middle;
 }
 .song_table th {
     font-weight: unset;
     color: #989898;
+    font-size: 14px;
+}
+.song_table tbody tr td:first-child {
+    padding-right: 0px;
 }
 .song_table tbody tr:hover {
-    background-color: #131313;
-}
-.playlist-box .song_table tbody tr:hover {
     background-color: #131313;
 }
 #page-lyric {
@@ -117,8 +132,7 @@ input#s_song_name:focus {
     line-height: 30px;
 }
 .playlist-box {
-    box-shadow: 0px 0px 5px #000;
-    background-color: #1b1b1c;
+    background-color: #242424;
     display: none;
 }
 .playing {
@@ -136,6 +150,7 @@ input#s_song_name:focus {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    background-color: #242424;
 }
 .s_song_tabs > ul > li > a {
     color: #989898;
@@ -148,5 +163,5 @@ input#s_song_name:focus {
 }
 .s_song_tabs > ul > li.active > a {
     color: #28a745;
-    background-color: #242424;
+    background-color: #1b1b1c;
 }

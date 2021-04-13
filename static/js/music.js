@@ -131,7 +131,7 @@ $(document).ready(function() {
                             $("#lyric_result").getNiceScroll(0).doScrollTop(scroll_lyric_height);
                         }
                     }
-                    $(this).css({'font-size': '15px', 'color': '#28a745'});
+                    $(this).css({'font-size': '14px', 'color': '#28a745'});
                     $(this).siblings().attr('style', '');
                 }
             });
@@ -200,7 +200,7 @@ $(document).ready(function() {
                 $.get('/music/search/' + $(this).val(), function(song_results) {
                     $('#s_song_results').html(song_results);
                     $('.s_song_tabs').tabslet({
-                        mouseevent: 'click',
+                        mouseevent: 'hover',
                         animation: false
                     });
                     $('.s_song_tabs > div').niceScroll({
@@ -543,7 +543,7 @@ $(document).ready(function() {
                             $("#lyric_result").getNiceScroll(0).doScrollTop(0);
                         }
                     }
-                    $(this).css({'font-size': '15px', 'color': '#28a745'});
+                    $(this).css({'font-size': '14px', 'color': '#28a745'});
                     $(this).siblings().attr('style', '');
                 }
             });
