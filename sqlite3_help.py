@@ -2,7 +2,6 @@ import sqlite3
 
 
 class Sqlite3DB:
-
     def __init__(self, db_name=None):
         self.conn = sqlite3.connect(db_name if db_name else 'system.db')
         self.cursor = self.conn.cursor()
@@ -82,7 +81,7 @@ if __name__ == '__main__':
     #                                   'song_platform': 'netease-cloud', 'song_album_id': '', 'song_hash': ''})
     # db.execute('delete from song_play_list where song_id = "190072"')
     # db.execute('drop table song_play_list')
-    print(db.query_data("select * from song_play_list where visitor_id = '93900461f5b249e998e9ce7128d47021'"))
+    print(db.query_data("select * from song_play_list"))
 
     # db.create_table('image_list', ['visitor_id', 'link'])
     # db.insert_data("image_list", {'visitor_id': '93900461f5b249e998e9ce7128d47021', 'link': '//hbimg.huabanimg.com/9d9c27876a67a539b9865b2f01ee4fddbdeb955fc204c-cMmH7Q_/fw/480/format/webp'})

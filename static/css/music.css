@@ -69,12 +69,13 @@ input#s_song_name:focus {
     height: 6px;
     background: #28a745;
 }
-.icon-play-cicle:hover, .icon-add:hover, .icon-volume-0:hover, .icon-volume-1:hover,
+.icon-add:hover, .icon-volume-0:hover, .icon-volume-1:hover,
 .icon-lyric:hover, .icon-lyric1:hover, .icon-prev:hover, .icon-play:hover, .icon-pause:hover, .icon-next:hover,
 .icon-single-loop:hover, .icon-list-loop:hover, .icon-playlist:hover, .icon-cancel:hover, .icon-del:hover {
     color: #e8e8e8;
 }
-.icon-play-cicle, .icon-add {
+.icon-add {
+    display: none;
     font-size: 12px;
     color: #989898;
     cursor: pointer;
@@ -164,4 +165,8 @@ input#s_song_name:focus {
 .s_song_tabs > ul > li.active > a {
     color: #28a745;
     background-color: #1b1b1c;
+}
+#s_song_results .song_table tbody tr:hover .icon-add {
+    display: block;
+    float: right;
 }

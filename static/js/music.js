@@ -35,8 +35,6 @@ $(document).ready(function() {
                 play_song($(this));
             });
             $('#playlist-tab > table > tbody > tr:first-child').click();
-            $('#play-pause').attr('class', 'iconfont icon-play');
-            audio.pause();
             $('#playlist-tab tr[song-id] .icon-cancel').click(function() {
                 if ($(this).parents('tr').hasClass('playing')) {
                     if ($('#playlist-tab > table > tbody > tr').length > 1) {
@@ -81,7 +79,7 @@ $(document).ready(function() {
                 var count = $('#playlist-tab > table > tbody > tr').length;
                 $('#playlist-count').text(count);
                 if (count == 0) {
-                    $('.icon-play-cicle').css('color', '');
+                    $('#s_song_results .song_table tbody tr').removeClass('playing');
                 }
                 var params = {
                     visitor_id: $('#visitor_id').val(),
@@ -161,10 +159,10 @@ $(document).ready(function() {
         }
     });
     var play_song = function (data_ele) {
-        $('.icon-play-cicle').each(function() {
-            if ($(this).parent('td').attr('song-id') == data_ele.attr('song-id')) {
-                $('.icon-play-cicle').css('color', '');
-                $(this).css('color', '#28a745');
+        $('#s_song_results .song_table tbody tr').each(function() {
+            if ($(this).attr('song-id') == data_ele.attr('song-id')) {
+                $('#s_song_results .song_table tbody tr').removeClass('playing');
+                $(this).addClass('playing');
                 return false;
             }
         });
@@ -224,17 +222,17 @@ $(document).ready(function() {
                         $('.s_song_tabs > div').getNiceScroll().resize();
                     });
                     if ($('#playlist-tab > table > tbody > tr.playing').length > 0) {
-                        $('.icon-play-cicle').each(function(){
-                            if ($(this).parent('td').attr('song-id') == $('#playlist-tab > table > tbody > tr.playing').attr('song-id')) {
-                                $('.icon-play-cicle').css('color', '');
-                                $(this).css('color', '#28a745');
+                        $('#s_song_results .song_table tbody tr').each(function(){
+                            if ($(this).attr('song-id') == $('#playlist-tab > table > tbody > tr.playing').attr('song-id')) {
+                                $('#s_song_results .song_table tbody tr').removeClass('playing');
+                                $(this).addClass('playing');
                                 return false;
                             }
                         });
                     }
-                    $('.icon-play-cicle').click(function() {
+                    $('#s_song_results .song_table tbody tr').click(function() {
                         var added = false;
-                        var song_id = $(this).parent('td').attr('song-id');
+                        var song_id = $(this).attr('song-id');
                         $("#playlist-tab > table > tbody > tr").each(function(){
                             if ($(this).attr('song-id') == song_id) {
                                 added = true;
@@ -244,16 +242,16 @@ $(document).ready(function() {
                         });
                         if (!added) {
                             var html = '<tr style="cursor: pointer;" song-id="' + song_id + '"' +
-                            'song-name="' + $(this).parent('td').attr('song-name') + '"' +
-                            'song-singer="' + $(this).parent('td').attr('song-singer') + '"' +
-                            'song-duration="' + $(this).parent('td').attr('song-duration') + '"' +
-                            'song-platform="' + $(this).parent('td').attr('song-platform') + '"' +
-                            'song-album-id="' + $(this).parent('td').attr('song-album-id') + '"' +
-                            'song-hash="' + $(this).parent('td').attr('song-hash') + '">' +
+                            'song-name="' + $(this).attr('song-name') + '"' +
+                            'song-singer="' + $(this).attr('song-singer') + '"' +
+                            'song-duration="' + $(this).attr('song-duration') + '"' +
+                            'song-platform="' + $(this).attr('song-platform') + '"' +
+                            'song-album-id="' + $(this).attr('song-album-id') + '"' +
+                            'song-hash="' + $(this).attr('song-hash') + '">' +
                             '<td><i class="iconfont icon-list-play" style="font-size: 12px;"></i></td>' +
-                            '<td>' + $(this).parent('td').attr('song-name') + '</td>' +
-                            '<td>' + $(this).parent('td').attr('song-singer') + '</td>' +
-                            '<td>' + $(this).parent('td').attr('song-duration') +'</td>' +
+                            '<td>' + $(this).attr('song-name') + '</td>' +
+                            '<td>' + $(this).attr('song-singer') + '</td>' +
+                            '<td>' + $(this).attr('song-duration') +'</td>' +
                             '<td><i class="iconfont icon-cancel"></i></td></tr>';
                             var playing_tr = $('#playlist-tab > table > tbody > tr.playing');
                             if (playing_tr.length > 0) {
@@ -264,12 +262,12 @@ $(document).ready(function() {
                             var params = {
                                 visitor_id: $('#visitor_id').val(),
                                 song_id: song_id,
-                                song_name: $(this).parent('td').attr('song-name'),
-                                song_singer: $(this).parent('td').attr('song-singer'),
-                                song_duration: $(this).parent('td').attr('song-duration'),
-                                song_platform: $(this).parent('td').attr('song-platform'),
-                                song_album_id: $(this).parent('td').attr('song-album-id'),
-                                song_hash: $(this).parent('td').attr('song-hash')
+                                song_name: $(this).attr('song-name'),
+                                song_singer: $(this).attr('song-singer'),
+                                song_duration: $(this).attr('song-duration'),
+                                song_platform: $(this).attr('song-platform'),
+                                song_album_id: $(this).attr('song-album-id'),
+                                song_hash: $(this).attr('song-hash')
                             }
                             $.post("/music/play/list/add", params, function(result){
                                 console.log(result);
@@ -329,7 +327,7 @@ $(document).ready(function() {
                                 var count = $('#playlist-tab > table > tbody > tr').length;
                                 $('#playlist-count').text(count);
                                 if (count == 0) {
-                                    $('.icon-play-cicle').css('color', '');
+                                    $('#s_song_results .song_table tbody tr').removeClass('playing');
                                 }
                                 var params = {
                                     visitor_id: $('#visitor_id').val(),
@@ -343,7 +341,7 @@ $(document).ready(function() {
                     });
                     $('.icon-add').click(function() {
                         var added = false;
-                        var song_id = $(this).parent('td').attr('song-id');
+                        var song_id = $(this).parent('td').parent('tr').attr('song-id');
                         $("#playlist-tab > table > tbody > tr").each(function(){
                             if ($(this).attr('song-id') == song_id) {
                                 added = true;
@@ -352,27 +350,27 @@ $(document).ready(function() {
                         });
                         if (!added) {
                             var html = '<tr style="cursor: pointer;" song-id="' + song_id + '"' +
-                            'song-name="' + $(this).parent('td').attr('song-name') + '"' +
-                            'song-singer="' + $(this).parent('td').attr('song-singer') + '"' +
-                            'song-duration="' + $(this).parent('td').attr('song-duration') + '"' +
-                            'song-platform="' + $(this).parent('td').attr('song-platform') + '"' +
-                            'song-album-id="' + $(this).parent('td').attr('song-album-id') + '"' +
-                            'song-hash="' + $(this).parent('td').attr('song-hash') + '">' +
+                            'song-name="' + $(this).parent('td').parent('tr').attr('song-name') + '"' +
+                            'song-singer="' + $(this).parent('td').parent('tr').attr('song-singer') + '"' +
+                            'song-duration="' + $(this).parent('td').parent('tr').attr('song-duration') + '"' +
+                            'song-platform="' + $(this).parent('td').parent('tr').attr('song-platform') + '"' +
+                            'song-album-id="' + $(this).parent('td').parent('tr').attr('song-album-id') + '"' +
+                            'song-hash="' + $(this).parent('td').parent('tr').attr('song-hash') + '">' +
                             '<td><i class="iconfont icon-list-play" style="font-size: 12px;"></i></td>' +
-                            '<td>' + $(this).parent('td').attr('song-name') + '</td>' +
-                            '<td>' + $(this).parent('td').attr('song-singer') + '</td>' +
-                            '<td>' + $(this).parent('td').attr('song-duration') +'</td>' +
+                            '<td>' + $(this).parent('td').parent('tr').attr('song-name') + '</td>' +
+                            '<td>' + $(this).parent('td').parent('tr').attr('song-singer') + '</td>' +
+                            '<td>' + $(this).parent('td').parent('tr').attr('song-duration') +'</td>' +
                             '<td><i class="iconfont icon-cancel"></i></td></tr>';
                             $('#playlist-tab > table > tbody').append(html);
                             var params = {
                                 visitor_id: $('#visitor_id').val(),
                                 song_id: song_id,
-                                song_name: $(this).parent('td').attr('song-name'),
-                                song_singer: $(this).parent('td').attr('song-singer'),
-                                song_duration: $(this).parent('td').attr('song-duration'),
-                                song_platform: $(this).parent('td').attr('song-platform'),
-                                song_album_id: $(this).parent('td').attr('song-album-id'),
-                                song_hash: $(this).parent('td').attr('song-hash')
+                                song_name: $(this).parent('td').parent('tr').attr('song-name'),
+                                song_singer: $(this).parent('td').parent('tr').attr('song-singer'),
+                                song_duration: $(this).parent('td').parent('tr').attr('song-duration'),
+                                song_platform: $(this).parent('td').parent('tr').attr('song-platform'),
+                                song_album_id: $(this).parent('td').parent('tr').attr('song-album-id'),
+                                song_hash: $(this).parent('td').parent('tr').attr('song-hash')
                             }
                             $.post("/music/play/list/add", params, function(result){
                                 console.log(result);
@@ -434,7 +432,7 @@ $(document).ready(function() {
                                 var count = $('#playlist-tab > table > tbody > tr').length;
                                 $('#playlist-count').text(count);
                                 if (count == 0) {
-                                    $('.icon-play-cicle').css('color', '');
+                                    $('#s_song_results .song_table tbody tr').removeClass('playing');
                                 }
                                 var params = {
                                     visitor_id: $('#visitor_id').val(),
@@ -521,6 +519,7 @@ $(document).ready(function() {
                 $('#lyric_result').getNiceScroll().resize();
                 $('#lyric').attr('class', 'iconfont icon-lyric1');
                 $('#lyric').css('color', '#28a745');
+                before_scroll_lyric_height = 0;
             } else {
                 $('#lyric').css('color', '');
                 $('#lyric').attr('class', 'iconfont icon-lyric');
@@ -552,10 +551,12 @@ $(document).ready(function() {
                         } else {
                             $('#play-pause').attr('class', 'iconfont icon-pause');
                             audio.play();
+                            before_scroll_lyric_height = 0;
                         }
                     } else {
                         $('#play-pause').attr('class', 'iconfont icon-pause');
                         audio.play();
+                        before_scroll_lyric_height = 0;
                     }
                 }, 1000);
             }
@@ -634,7 +635,7 @@ $(document).ready(function() {
     $('.icon-del').click(function() {
         $('#playlist-tab > table > tbody').empty();
         $('#playlist-count').text(0);
-        $('.icon-play-cicle').css('color', '');
+        $('#s_song_results .song_table tbody tr').removeClass('playing');
         $('.song-name').text('');
         $('.song-singer').text('');
         $('#song-duration').text('00:00');
