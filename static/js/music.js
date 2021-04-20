@@ -339,9 +339,10 @@ $(document).ready(function() {
                             });
                         }
                     });
-                    $('.icon-add').click(function() {
+                    $('.icon-add').click(function(event) {
+                        event.stopPropagation();
                         var added = false;
-                        var song_id = $(this).parent('td').parent('tr').attr('song-id');
+                        var song_id = $(this).parent('div').parent('td').parent('tr').attr('song-id');
                         $("#playlist-tab > table > tbody > tr").each(function(){
                             if ($(this).attr('song-id') == song_id) {
                                 added = true;
@@ -350,27 +351,27 @@ $(document).ready(function() {
                         });
                         if (!added) {
                             var html = '<tr style="cursor: pointer;" song-id="' + song_id + '"' +
-                            'song-name="' + $(this).parent('td').parent('tr').attr('song-name') + '"' +
-                            'song-singer="' + $(this).parent('td').parent('tr').attr('song-singer') + '"' +
-                            'song-duration="' + $(this).parent('td').parent('tr').attr('song-duration') + '"' +
-                            'song-platform="' + $(this).parent('td').parent('tr').attr('song-platform') + '"' +
-                            'song-album-id="' + $(this).parent('td').parent('tr').attr('song-album-id') + '"' +
-                            'song-hash="' + $(this).parent('td').parent('tr').attr('song-hash') + '">' +
+                            'song-name="' + $(this).parent('div').parent('td').parent('tr').attr('song-name') + '"' +
+                            'song-singer="' + $(this).parent('div').parent('td').parent('tr').attr('song-singer') + '"' +
+                            'song-duration="' + $(this).parent('div').parent('td').parent('tr').attr('song-duration') + '"' +
+                            'song-platform="' + $(this).parent('div').parent('td').parent('tr').attr('song-platform') + '"' +
+                            'song-album-id="' + $(this).parent('div').parent('td').parent('tr').attr('song-album-id') + '"' +
+                            'song-hash="' + $(this).parent('div').parent('td').parent('tr').attr('song-hash') + '">' +
                             '<td><i class="iconfont icon-list-play" style="font-size: 12px;"></i></td>' +
-                            '<td>' + $(this).parent('td').parent('tr').attr('song-name') + '</td>' +
-                            '<td>' + $(this).parent('td').parent('tr').attr('song-singer') + '</td>' +
-                            '<td>' + $(this).parent('td').parent('tr').attr('song-duration') +'</td>' +
+                            '<td>' + $(this).parent('div').parent('td').parent('tr').attr('song-name') + '</td>' +
+                            '<td>' + $(this).parent('div').parent('td').parent('tr').attr('song-singer') + '</td>' +
+                            '<td>' + $(this).parent('div').parent('td').parent('tr').attr('song-duration') +'</td>' +
                             '<td><i class="iconfont icon-cancel"></i></td></tr>';
                             $('#playlist-tab > table > tbody').append(html);
                             var params = {
                                 visitor_id: $('#visitor_id').val(),
                                 song_id: song_id,
-                                song_name: $(this).parent('td').parent('tr').attr('song-name'),
-                                song_singer: $(this).parent('td').parent('tr').attr('song-singer'),
-                                song_duration: $(this).parent('td').parent('tr').attr('song-duration'),
-                                song_platform: $(this).parent('td').parent('tr').attr('song-platform'),
-                                song_album_id: $(this).parent('td').parent('tr').attr('song-album-id'),
-                                song_hash: $(this).parent('td').parent('tr').attr('song-hash')
+                                song_name: $(this).parent('div').parent('td').parent('tr').attr('song-name'),
+                                song_singer: $(this).parent('div').parent('td').parent('tr').attr('song-singer'),
+                                song_duration: $(this).parent('div').parent('td').parent('tr').attr('song-duration'),
+                                song_platform: $(this).parent('div').parent('td').parent('tr').attr('song-platform'),
+                                song_album_id: $(this).parent('div').parent('td').parent('tr').attr('song-album-id'),
+                                song_hash: $(this).parent('div').parent('td').parent('tr').attr('song-hash')
                             }
                             $.post("/music/play/list/add", params, function(result){
                                 console.log(result);
@@ -651,5 +652,12 @@ $(document).ready(function() {
         }
         $('#audio').attr('src', '');
         $('#play-pause').attr('class', 'iconfont icon-play');
+        var params = {
+            visitor_id: $('#visitor_id').val(),
+            song_id: 'all',
+        }
+        $.post("/music/play/list/del", params, function(result){
+            console.log(result);
+        });
     });
 });

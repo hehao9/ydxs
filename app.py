@@ -40,7 +40,10 @@ def music_play_list_add():
 @app.route('/music/play/list/del', methods=['post'])
 def music_play_list_del():
     db = Sqlite3DB()
-    db.execute(f'delete from song_play_list where visitor_id = "{request.form["visitor_id"]}" and song_id = {request.form["song_id"]};')
+    if request.form["song_id"] == 'all':
+        db.execute(f'delete from song_play_list where visitor_id = "{request.form["visitor_id"]}";')
+    else:
+        db.execute(f'delete from song_play_list where visitor_id = "{request.form["visitor_id"]}" and song_id = {request.form["song_id"]};')
     db.close()
     return jsonify({'status': 1, 'msg': 'success'})
 

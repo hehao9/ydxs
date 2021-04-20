@@ -75,7 +75,6 @@ input#s_song_name:focus {
     color: #e8e8e8;
 }
 .icon-add {
-    display: none;
     font-size: 12px;
     color: #989898;
     cursor: pointer;
@@ -166,7 +165,18 @@ input#s_song_name:focus {
     color: #28a745;
     background-color: #1b1b1c;
 }
-#s_song_results .song_table tbody tr:hover .icon-add {
+.h-btn {
+    display: none;
+}
+#s_song_results .song_table tbody tr:hover .h-btn {
     display: block;
-    float: right;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    background-color: #131313;
+    padding: 6px 10px;
 }
