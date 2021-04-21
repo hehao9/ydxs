@@ -20,7 +20,8 @@ $(document).ready(function() {
                 'song-duration="' + v.song_duration + '"' +
                 'song-platform="' + v.song_platform + '"' +
                 'song-album-id="' + v.song_album_id + '"' +
-                'song-hash="' + v.song_hash + '">' +
+                'song-hash="' + v.song_hash + '"' +
+                'song-mid="' + v.song_mid + '">' +
                 '<td><i class="iconfont icon-list-play" style="font-size: 12px;"></i></td>' +
                 '<td>' + v.song_name + '</td>' +
                 '<td>' + v.song_singer + '</td>' +
@@ -186,6 +187,7 @@ $(document).ready(function() {
             song_id: data_ele.attr('song-id'),
             song_album_id: data_ele.attr('song-album-id'),
             song_hash: data_ele.attr('song-hash'),
+            song_mid: data_ele.attr('song-mid'),
         }
         $.post("/music/play/detail", params, function(song_detail){
             var html = "";
@@ -247,7 +249,8 @@ $(document).ready(function() {
                             'song-duration="' + $(this).attr('song-duration') + '"' +
                             'song-platform="' + $(this).attr('song-platform') + '"' +
                             'song-album-id="' + $(this).attr('song-album-id') + '"' +
-                            'song-hash="' + $(this).attr('song-hash') + '">' +
+                            'song-hash="' + $(this).attr('song-hash') + '"' +
+                            'song-mid="' + $(this).attr('song-mid') + '">' +
                             '<td><i class="iconfont icon-list-play" style="font-size: 12px;"></i></td>' +
                             '<td>' + $(this).attr('song-name') + '</td>' +
                             '<td>' + $(this).attr('song-singer') + '</td>' +
@@ -267,7 +270,8 @@ $(document).ready(function() {
                                 song_duration: $(this).attr('song-duration'),
                                 song_platform: $(this).attr('song-platform'),
                                 song_album_id: $(this).attr('song-album-id'),
-                                song_hash: $(this).attr('song-hash')
+                                song_hash: $(this).attr('song-hash'),
+                                song_mid: $(this).attr('song-mid')
                             }
                             $.post("/music/play/list/add", params, function(result){
                                 console.log(result);
@@ -356,7 +360,8 @@ $(document).ready(function() {
                             'song-duration="' + $(this).parent('div').parent('td').parent('tr').attr('song-duration') + '"' +
                             'song-platform="' + $(this).parent('div').parent('td').parent('tr').attr('song-platform') + '"' +
                             'song-album-id="' + $(this).parent('div').parent('td').parent('tr').attr('song-album-id') + '"' +
-                            'song-hash="' + $(this).parent('div').parent('td').parent('tr').attr('song-hash') + '">' +
+                            'song-hash="' + $(this).parent('div').parent('td').parent('tr').attr('song-hash') + '"' +
+                            'song-mid="' + $(this).parent('div').parent('td').parent('tr').attr('song-mid') + '">' +
                             '<td><i class="iconfont icon-list-play" style="font-size: 12px;"></i></td>' +
                             '<td>' + $(this).parent('div').parent('td').parent('tr').attr('song-name') + '</td>' +
                             '<td>' + $(this).parent('div').parent('td').parent('tr').attr('song-singer') + '</td>' +
@@ -371,7 +376,8 @@ $(document).ready(function() {
                                 song_duration: $(this).parent('div').parent('td').parent('tr').attr('song-duration'),
                                 song_platform: $(this).parent('div').parent('td').parent('tr').attr('song-platform'),
                                 song_album_id: $(this).parent('div').parent('td').parent('tr').attr('song-album-id'),
-                                song_hash: $(this).parent('div').parent('td').parent('tr').attr('song-hash')
+                                song_hash: $(this).parent('div').parent('td').parent('tr').attr('song-hash'),
+                                song_mid: $(this).parent('div').parent('td').parent('tr').attr('song-mid')
                             }
                             $.post("/music/play/list/add", params, function(result){
                                 console.log(result);

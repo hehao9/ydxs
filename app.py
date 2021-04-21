@@ -3,6 +3,7 @@ from flask import render_template
 from flask_cors import cross_origin
 import netease_cloud_music
 import kugou_music
+import qq_music
 from sqlite3_help import Sqlite3DB
 
 app = Flask(__name__)
@@ -32,7 +33,8 @@ def music_play_list_add():
     db.insert_data("song_play_list", {'visitor_id': request.form['visitor_id'], 'song_id': request.form['song_id'],
                                       'song_name': request.form['song_name'], 'song_singer': request.form['song_singer'], 
                                       'song_duration': request.form['song_duration'], 'song_platform': request.form['song_platform'],
-                                      'song_album_id': request.form['song_album_id'], 'song_hash': request.form['song_hash']})
+                                      'song_album_id': request.form['song_album_id'], 'song_hash': request.form['song_hash'],
+                                      'song_mid': request.form['song_mid']})
     db.close()
     return jsonify({'status': 1, 'msg': 'success'})
 
@@ -51,13 +53,17 @@ def music_play_list_del():
 @app.route('/music/search/<song_name>')
 def music_search(song_name):
     results = [{
-        'platform': '网易云',
+        'platform': '网易云音乐',
         'alias': 'netease-cloud',
         'song_list': netease_cloud_music.get_music_search(song_name),
     }, {
-        'platform': '酷狗',
+        'platform': '酷狗音乐',
         'alias': 'kugou',
         'song_list': kugou_music.get_music_search(song_name),
+    }, {
+        'platform': 'QQ音乐',
+        'alias': 'qq',
+        'song_list': qq_music.get_music_search(song_name),
     }]
     return render_template('song_list.html', results=results)
 
@@ -69,6 +75,8 @@ def music_detail():
         return jsonify(netease_cloud_music.get_music_detail(request.form['song_id']))
     if song_platform == 'kugou':
         return jsonify(kugou_music.get_music_detail(request.form['song_album_id'], request.form['song_hash']))
+    if song_platform == 'qq':
+        return jsonify(qq_music.get_music_detail(request.form['song_mid']))
 
 
 @app.route('/image')
