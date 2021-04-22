@@ -61,7 +61,7 @@ def music_search(song_name):
         'alias': 'kugou',
         'song_list': kugou_music.get_music_search(song_name),
     }, {
-        'platform': 'QQ音乐',
+        'platform': 'Q Q音乐',
         'alias': 'qq',
         'song_list': qq_music.get_music_search(song_name),
     }]
