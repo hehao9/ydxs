@@ -74,28 +74,18 @@ input#s_song_name:focus {
 .icon-single-loop:hover, .icon-list-loop:hover, .icon-playlist:hover, .icon-cancel:hover, .icon-del:hover {
     color: #e8e8e8;
 }
-.icon-add {
-    font-size: 12px;
-    color: #989898;
-    cursor: pointer;
-}
 .icon-del {
-    font-size: 15px;
+    font-size: 16px;
     color: #989898;
     cursor: pointer;
 }
-.icon-lyric, .icon-lyric1, .icon-prev, .icon-next, .icon-single-loop, .icon-list-loop, .icon-playlist {
+.icon-lyric, .icon-lyric1, .icon-prev, .icon-next, .icon-single-loop, .icon-list-loop, .icon-playlist, .icon-play, .icon-pause {
     font-size: 20px;
     color: #989898;
     cursor: pointer;
 }
-.icon-volume-0, .icon-volume-1, .icon-cancel {
+.icon-volume-0, .icon-volume-1, .icon-cancel, .icon-add {
     font-size: 12px;
-    color: #989898;
-    cursor: pointer;
-}
-.icon-play, .icon-pause {
-    font-size: 20px;
     color: #989898;
     cursor: pointer;
 }
@@ -105,7 +95,7 @@ input#s_song_name:focus {
     padding-left: 10px;
 }
 .song_table {
-    color: #e8e8e8;
+    color: #9b9b9b;
     width: 100%;
 }
 .song_table tr {
@@ -117,8 +107,7 @@ input#s_song_name:focus {
 }
 .song_table th {
     font-weight: unset;
-    color: #989898;
-    font-size: 14px;
+    color: #9b9b9b;
 }
 .song_table tbody tr td:first-child {
     padding-right: 0px;
@@ -128,17 +117,22 @@ input#s_song_name:focus {
 }
 #page-lyric {
     display: none;
-    color: #989898;
+    color: #9b9b9b;
     line-height: 30px;
 }
 .playlist-box {
     background-color: #242424;
     display: none;
 }
-.playing {
+.play-song {
+    color: #e8e8e8;
+    cursor: pointer;
+}
+.playing .play-song{
     color: #28a745;
 }
 .playing .icon-list-play {
+    color: #28a745;
     display: block;
 }
 .icon-list-play {
@@ -153,7 +147,7 @@ input#s_song_name:focus {
     background-color: #242424;
 }
 .s_song_tabs > ul > li > a {
-    color: #989898;
+    color: #9b9b9b;
     padding: 5px;
     display: block;
 }
@@ -179,4 +173,13 @@ input#s_song_name:focus {
     top: 0px;
     background-color: #131313;
     padding: 6px 10px;
+}
+.badge-custom {
+    color: #e8e8e8;
+    transform: scale(0.8);
+    padding: .1em .4em;
+    border-radius: 10rem;
+    font-size: 12px;
+    font-weight: 400;
+    border: 1px solid #28a745;
 }

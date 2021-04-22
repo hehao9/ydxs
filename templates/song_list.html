@@ -9,7 +9,7 @@
         <table class="song_table">
             <!--
             <thead>
-                <tr style="color: #989898;">
+                <tr>
                     <th></th>
                     <th>歌曲标题</th>
                     <th>歌手</th>
@@ -20,13 +20,25 @@
             -->
             <tbody>
             {% for song in result.song_list %}
-            <tr style="cursor: pointer;" song-id="{{ song.id }}" song-name="{{ song.name }}" song-singer="{{ song.singer }}"
+            <tr song-id="{{ song.id }}" song-name="{{ song.name }}" song-singer="{{ song.singer }}"
                 song-duration="{{ song.duration }}" song-platform="{{ result.alias }}"
                 song-album-id="{{ song.album_id }}" song-hash="{{ song.hash }}" song-mid="{{ song.mid }}">
                 <td style="width: 22px;">
                     <i class="iconfont icon-list-play" style="font-size: 12px;"></i>
                 </td>
-                <td style="position: relative;">{{ song.name }}<div class="h-btn"><i class="iconfont icon-add"></i></div></td>
+                <td style="position: relative;">
+                    <span class="play-song">{{ song.name }}</span>
+                    {% if song.is_only == 1 %}
+                    <span class="badge badge-custom">独家</span>
+                    {% endif %}
+                    {% if song.has_mv == 1 %}
+                    <span class="badge badge-custom play-mv" mv-url="{{ song.mv_url }}" style="cursor: pointer;">MV</span>
+                    {% endif %}
+                    {% if song.is_vip == 1 %}
+                    <span class="badge badge-custom">VIP</span>
+                    {% endif %}
+                    <div class="h-btn"><i class="iconfont icon-add"></i></div>
+                </td>
                 <td>{{ song.singer }}</td>
                 <td>{{ song.album }}</td>
                 <td>{{ song.duration }}</td>
