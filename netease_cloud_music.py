@@ -78,7 +78,12 @@ def get_music_search(song_name):
                     'name': song.get('name'),
                     'singer': song.get('ar')[0].get('name'),
                     'album': song.get('al').get('name'),
+                    'album_pic': song.get('al').get('picUrl'),
                     'duration': duration,
+                    # 'is_only': 0,
+                    'has_mv': 1 if song.get('mv') > 0 else 0,
+                    'mv_url': f"https://music.163.com/#/mv?id={song.get('mv')}",
+                    # 'is_vip': 0,
                 })
     return song_list
 

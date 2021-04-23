@@ -71,9 +71,14 @@ def get_music_search(song_name):
                     'name': song.get('SongName').replace('<em>', '').replace('</em>', ''),
                     'singer': song.get('SingerName').replace('<em>', '').replace('</em>', ''),
                     'album': song.get('AlbumName'),
+                    'album_pic': '',
                     'duration': duration,
                     'hash': song.get('FileHash'),
                     'album_id': song.get('AlbumID'),
+                    # 'is_only': 0,
+                    # 'has_mv': 0,
+                    # 'mv_url': "",
+                    # 'is_vip': 0,
                 })
     return song_list
 
