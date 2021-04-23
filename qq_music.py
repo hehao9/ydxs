@@ -29,6 +29,7 @@ def get_music_search(song_name):
                     'name': song.get('title'),
                     'singer': song.get('singer')[0].get('name'),
                     'album': song.get('album').get('name'),
+                    'album_pic': f"https://y.gtimg.cn/music/photo_new/T002R300x300M000{song.get('album').get('mid')}.jpg?max_age=2592000",
                     'duration': duration,
                     'mid': song.get('mid'),
                     'is_only': 1 if song.get('isonly') == 1 else 0,

@@ -74,18 +74,21 @@ class Sqlite3DB:
 
 if __name__ == '__main__':
     db = Sqlite3DB()
+
+    # db.execute('drop table song_play_list')
     # db.create_table('song_play_list', ['visitor_id', 'song_id', 'song_name', 'song_singer',
-    #                                    'song_duration', 'song_platform', 'song_album_id', 'song_hash', 'song_mid'])
+    #                                    'song_duration', 'song_album_pic', 'song_platform', 'song_album_id',
+    #                                    'song_hash', 'song_mid'])
+
+    # db.execute('delete from song_play_list where song_id = "190072"')
     # db.insert_data("song_play_list", {'visitor_id': '93900461f5b249e998e9ce7128d47021', 'song_id': '190072',
     #                                   'song_name': '黄昏', 'song_singer': '周传雄', 'song_duration': '05:44',
     #                                   'song_platform': 'netease-cloud', 'song_album_id': '', 'song_hash': '', 'mid': ''})
-    # db.execute('delete from song_play_list where song_id = "190072"')
-    # db.execute('drop table song_play_list')
-    print(db.query_data("select * from song_play_list"))
 
+    # db.execute('delete from image_list where visitor_id = "93900461f5b249e998e9ce7128d47021"')
     # db.create_table('image_list', ['visitor_id', 'link'])
     # db.insert_data("image_list", {'visitor_id': '93900461f5b249e998e9ce7128d47021', 'link': '//hbimg.huabanimg.com/9d9c27876a67a539b9865b2f01ee4fddbdeb955fc204c-cMmH7Q_/fw/480/format/webp'})
-    # db.execute('delete from image_list where visitor_id = "93900461f5b249e998e9ce7128d47021"')
 
+    print(db.query_data("select * from song_play_list"))
     # print(db.query_data("select * from image_list where visitor_id = '93900461f5b249e998e9ce7128d47021'"))
     db.close()

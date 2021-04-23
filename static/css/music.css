@@ -117,7 +117,7 @@ input#s_song_name:focus {
 }
 #page-lyric {
     display: none;
-    color: #9b9b9b;
+    color: #e8e8e8;
     line-height: 30px;
 }
 .playlist-box {

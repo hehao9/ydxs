@@ -30,10 +30,15 @@ def music_play_list():
 @app.route('/music/play/list/add', methods=['post'])
 def music_play_list_add():
     db = Sqlite3DB()
-    db.insert_data("song_play_list", {'visitor_id': request.form['visitor_id'], 'song_id': request.form['song_id'],
-                                      'song_name': request.form['song_name'], 'song_singer': request.form['song_singer'], 
-                                      'song_duration': request.form['song_duration'], 'song_platform': request.form['song_platform'],
-                                      'song_album_id': request.form['song_album_id'], 'song_hash': request.form['song_hash'],
+    db.insert_data("song_play_list", {'visitor_id': request.form['visitor_id'],
+                                      'song_id': request.form['song_id'],
+                                      'song_name': request.form['song_name'],
+                                      'song_singer': request.form['song_singer'],
+                                      'song_duration': request.form['song_duration'],
+                                      'song_album_pic': request.form['song_album_pic'],
+                                      'song_platform': request.form['song_platform'],
+                                      'song_album_id': request.form['song_album_id'],
+                                      'song_hash': request.form['song_hash'],
                                       'song_mid': request.form['song_mid']})
     db.close()
     return jsonify({'status': 1, 'msg': 'success'})

@@ -21,7 +21,7 @@
             <tbody>
             {% for song in result.song_list %}
             <tr song-id="{{ song.id }}" song-name="{{ song.name }}" song-singer="{{ song.singer }}"
-                song-duration="{{ song.duration }}" song-platform="{{ result.alias }}"
+                song-duration="{{ song.duration }}" song-album-pic="{{ song.album_pic }}" song-platform="{{ result.alias }}"
                 song-album-id="{{ song.album_id }}" song-hash="{{ song.hash }}" song-mid="{{ song.mid }}">
                 <td style="width: 22px;">
                     <i class="iconfont icon-list-play" style="font-size: 12px;"></i>
