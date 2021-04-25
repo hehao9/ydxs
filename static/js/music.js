@@ -2,7 +2,7 @@ $(document).ready(function() {
     //$.ajaxSettings.async = false;
     $('#s_song_name').focus();
     var audio = document.getElementById('audio');
-    audio.volume = 0.5;
+    audio.volume = 1;
     $('#lyric_result').niceScroll({
         cursorcolor: "#444",
         cursorwidth: 4,
@@ -396,7 +396,7 @@ $(document).ready(function() {
         step: 1,
         min: 0,
         max: 100,
-        value: 50,
+        value: 100,
         tooltip: 'show',
         orientation: 'vertical',
         reversed: true,
