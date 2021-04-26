@@ -57,6 +57,7 @@ def get_music_detail(mid):
     url = f'https://u.y.qq.com/cgi-bin/musics.fcg?-=getplaysongvkey6979654640577382&g_tk=1821604477&sign={sign}&loginUin=1152921504958843334&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data={data}'
     response = requests.get(url, verify=False)
     resp_json = response.json()
+    print(resp_json)
     if resp_json.get('code') == 0:
         song_url = 'http://ws.stream.qqmusic.qq.com/' + resp_json.get('req_0').get('data').get('midurlinfo')[0].get(
             'purl')

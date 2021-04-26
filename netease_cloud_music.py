@@ -73,6 +73,12 @@ def get_music_search(song_name):
                 minutes = int(millis / (1000 * 60))
                 minutes = f'0{minutes}' if minutes < 10 else minutes
                 duration = f'{minutes}:{seconds}'
+                is_vip = 0
+                if (song['privilege']['fee'] == 0 or song['privilege']['payed']) and song['privilege']['pl'] > 0 and \
+                        song['privilege']['dl'] == 0:
+                    is_vip = 1
+                if song['privilege']['dl'] == 0 and song['privilege']['pl'] == 0:
+                    is_vip = 1
                 song_list.append({
                     'id': song.get('id'),
                     'name': song.get('name'),
@@ -83,7 +89,7 @@ def get_music_search(song_name):
                     # 'is_only': 0,
                     'has_mv': 1 if song.get('mv') > 0 else 0,
                     'mv_url': f"https://music.163.com/#/mv?id={song.get('mv')}",
-                    # 'is_vip': 0,
+                    'is_vip': is_vip,
                 })
     return song_list
 

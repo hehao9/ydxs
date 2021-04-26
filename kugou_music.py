@@ -66,6 +66,10 @@ def get_music_search(song_name):
                 minutes = int(millis / 60)
                 minutes = f'0{minutes}' if minutes < 10 else minutes
                 duration = f'{minutes}:{seconds}'
+                is_vip = 0
+                if song.get('trans_param') and song.get('trans_param').get('hash_offset') and \
+                        song.get('trans_param').get('hash_offset').get('end_ms'):
+                    is_vip = 1
                 song_list.append({
                     'id': song.get('ID'),
                     'name': song.get('SongName').replace('<em>', '').replace('</em>', ''),
@@ -78,7 +82,7 @@ def get_music_search(song_name):
                     # 'is_only': 0,
                     # 'has_mv': 0,
                     # 'mv_url': "",
-                    # 'is_vip': 0,
+                    'is_vip': is_vip,
                 })
     return song_list
 
