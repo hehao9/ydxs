@@ -1,6 +1,18 @@
 body {
+    color: #e8e8e8;
     background-color: #1b1b1c;
     font-size: 12px!important;
+}
+#top-bar a {
+    color: #989898;
+    text-align: center;
+    width: 90px;
+    line-height: 35px;
+}
+#top-bar a:hover {
+    color: #e8e8e8;
+    background-color: #2d2d2d;
+    text-decoration: none;
 }
 input#s_song_name:focus {
     outline: 0;
@@ -108,9 +120,6 @@ input#s_song_name:focus {
 .song_table th {
     font-weight: unset;
     color: #9b9b9b;
-}
-.song_table tbody tr td:first-child {
-    padding-right: 0px;
 }
 .song_table tbody tr:hover {
     background-color: #131313;

@@ -106,5 +106,10 @@ def image_list_add():
     return jsonify({'status': 1, 'msg': 'success'})
 
 
+@app.route('/poetry')
+def poetry():
+    return render_template('poetry.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

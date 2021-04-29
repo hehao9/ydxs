@@ -170,7 +170,7 @@ $(document).ready(function() {
                             'song-album-id="' + $(this).parent('td').parent('tr').attr('song-album-id') + '"' +
                             'song-hash="' + $(this).parent('td').parent('tr').attr('song-hash') + '"' +
                             'song-mid="' + $(this).parent('td').parent('tr').attr('song-mid') + '">' +
-                            '<td><i class="iconfont icon-list-play" style="font-size: 12px;"></i></td>' +
+                            '<td style="padding-right: 0px;"><i class="iconfont icon-list-play" style="font-size: 12px;"></i></td>' +
                             '<td><span class="play-song">' + $(this).parent('td').parent('tr').attr('song-name') + '</span></td>' +
                             '<td>' + $(this).parent('td').parent('tr').attr('song-singer') + '</td>' +
                             '<td>' + $(this).parent('td').parent('tr').attr('song-duration') +'</td>' +
@@ -283,7 +283,7 @@ $(document).ready(function() {
                             'song-album-id="' + $(this).parent('div').parent('td').parent('tr').attr('song-album-id') + '"' +
                             'song-hash="' + $(this).parent('div').parent('td').parent('tr').attr('song-hash') + '"' +
                             'song-mid="' + $(this).parent('div').parent('td').parent('tr').attr('song-mid') + '">' +
-                            '<td><i class="iconfont icon-list-play" style="font-size: 12px;"></i></td>' +
+                            '<td style="padding-right: 0px;"><i class="iconfont icon-list-play" style="font-size: 12px;"></i></td>' +
                             '<td><span class="play-song">' + $(this).parent('div').parent('td').parent('tr').attr('song-name') + '</span></td>' +
                             '<td>' + $(this).parent('div').parent('td').parent('tr').attr('song-singer') + '</td>' +
                             '<td>' + $(this).parent('div').parent('td').parent('tr').attr('song-duration') +'</td>' +
@@ -607,7 +607,7 @@ $(document).ready(function() {
                 'song-album-id="' + v.song_album_id + '"' +
                 'song-hash="' + v.song_hash + '"' +
                 'song-mid="' + v.song_mid + '">' +
-                '<td><i class="iconfont icon-list-play" style="font-size: 12px;"></i></td>' +
+                '<td style="padding-right: 0px;"><i class="iconfont icon-list-play" style="font-size: 12px;"></i></td>' +
                 '<td><span class="play-song">' + v.song_name + '</span></td>' +
                 '<td>' + v.song_singer + '</td>' +
                 '<td>' + v.song_duration +'</td>' +
