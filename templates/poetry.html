@@ -19,33 +19,34 @@
     <div style="position: fixed; top: 0; right: 0; left: 0; bottom: 0;">
         <div class='s_song_tabs d-flex' style="height: 100%;">
             <ul class="d-flex flex-column">
-                <li class=""><a href="#ts">唐诗</a></li>
-                <li class=""><a href="#sc">宋词</a></li>
+                {% for result in results %}
+                <li class=""><a href="#{{ result.alias }}">{{ result.platform }}</a></li>
+                {% endfor %}
             </ul>
-            <div id="ts" class="flex-grow-1">
+            {% for result in results %}
+            <div id="{{ result.alias }}" class="flex-grow-1">
                 <div class="d-flex" style="height: 100%;">
                     <div class="d-flex flex-column flex-grow-1 text-center" style="padding: 30px 0px;">
-                        <div class="poetry-title" style="font-size: 24px; margin-bottom: 5px;">蝉</div>
-                        <div class="poetry-author" style="color: #9b9b9b; margin-bottom: 5px;">虞世南</div>
-                        <div class="poetry_content flex-grow-1" style="font-size: 14px; line-height: 30px;">
-                            <div>垂緌饮清露</div>
-                            <div>流想出疏桐</div>
-                            <div>居高声自远</div>
-                            <div>非是藉秋风</div>
+                        <div class="poetry-title" style="font-size: 24px; margin-bottom: 5px;"></div>
+                        <div class="poetry-author" style="color: #9b9b9b; margin-bottom: 5px;"></div>
+                        <div class="poetry-content flex-grow-1" style="font-size: 14px; line-height: 30px;">
                         </div>
                     </div>
-                    <div style="width: 150px; background-color: #242424;">
+                    <div class="poetry-catalog" style="width: 150px; background-color: #242424;">
                         <table class="song_table" style="color: #9b9b9b;">
                             <tbody>
-                                <tr><td>蝉</td></tr>
-                                <tr><td>野望</td></tr>
+                                {% for poetry in result.poetry_list %}
+                                <tr title="{{ poetry.title }}" author="{{ poetry.author }}" content="{{ poetry.content }}" type="{{ poetry.type }}">
+                                    <td class="play-song">{{ poetry.title }}</td>
+                                    <td>{{ poetry.author }}</td>
+                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            <div id="sc" class="flex-grow-1">
-            </div>
+            {% endfor %}
         </div>
     </div>
 </body>

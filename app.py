@@ -108,7 +108,18 @@ def image_list_add():
 
 @app.route('/poetry')
 def poetry():
-    return render_template('poetry.html')
+    db = Sqlite3DB()
+    results = [{
+        'platform': '唐诗',
+        'alias': 'ts',
+        'poetry_list': db.query_data(f"select * from poetry_list where type = 'ts'"),
+    }, {
+        'platform': '宋词',
+        'alias': 'sc',
+        'poetry_list': db.query_data(f"select * from poetry_list where type = 'sc'"),
+    }]
+    db.close()
+    return render_template('poetry.html', results=results)
 
 
 if __name__ == '__main__':

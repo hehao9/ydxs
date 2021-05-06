@@ -161,7 +161,7 @@ $(document).ready(function() {
                             }
                         });
                         if (!added) {
-                            var html = '<tr style="cursor: pointer;" song-id="' + song_id + '"' +
+                            var html = '<tr song-id="' + song_id + '"' +
                             'song-name="' + $(this).parent('td').parent('tr').attr('song-name') + '"' +
                             'song-singer="' + $(this).parent('td').parent('tr').attr('song-singer') + '"' +
                             'song-duration="' + $(this).parent('td').parent('tr').attr('song-duration') + '"' +
@@ -274,7 +274,7 @@ $(document).ready(function() {
                             }
                         });
                         if (!added) {
-                            var html = '<tr style="cursor: pointer;" song-id="' + song_id + '"' +
+                            var html = '<tr song-id="' + song_id + '"' +
                             'song-name="' + $(this).parent('div').parent('td').parent('tr').attr('song-name') + '"' +
                             'song-singer="' + $(this).parent('div').parent('td').parent('tr').attr('song-singer') + '"' +
                             'song-duration="' + $(this).parent('div').parent('td').parent('tr').attr('song-duration') + '"' +
@@ -598,7 +598,7 @@ $(document).ready(function() {
         $.post("/music/play/list", {visitor_id: $('#visitor_id').val()}, function(play_list){
             var html = "";
             $.each(play_list, function(i, v) {
-                html += '<tr style="cursor: pointer;" song-id="' + v.song_id + '"' +
+                html += '<tr song-id="' + v.song_id + '"' +
                 'song-name="' + v.song_name + '"' +
                 'song-singer="' + v.song_singer + '"' +
                 'song-duration="' + v.song_duration + '"' +
