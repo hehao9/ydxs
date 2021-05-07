@@ -129,7 +129,8 @@ $(document).ready(function() {
                 $.get('/music/search/' + $(this).val(), function(song_results) {
                     $('#s_song_results').html(song_results);
                     $('.s_song_tabs').tabslet({
-                        mouseevent: 'hover',
+                        mouseevent: 'click',
+                        attribute: 'target',
                         animation: false
                     });
                     $('.s_song_tabs > div, .s_song_tabs > ul').niceScroll({

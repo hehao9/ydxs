@@ -11,6 +11,7 @@ body {
 }
 #top-bar a:hover {
     color: #e8e8e8;
+    //background-color: #242424;
     background-color: #2d2d2d;
     text-decoration: none;
 }
@@ -81,7 +82,7 @@ input#s_song_name:focus {
     height: 6px;
     background: #28a745;
 }
-.icon-add:hover, .icon-volume-0:hover, .icon-volume-1:hover,
+.icon-add:hover, .icon-volume-0:hover, .icon-volume-1:hover, .icon-menu:hover,
 .icon-lyric:hover, .icon-lyric1:hover, .icon-prev:hover, .icon-play:hover, .icon-pause:hover, .icon-next:hover,
 .icon-single-loop:hover, .icon-list-loop:hover, .icon-playlist:hover, .icon-cancel:hover, .icon-del:hover {
     color: #e8e8e8;
@@ -91,7 +92,8 @@ input#s_song_name:focus {
     color: #989898;
     cursor: pointer;
 }
-.icon-lyric, .icon-lyric1, .icon-prev, .icon-next, .icon-single-loop, .icon-list-loop, .icon-playlist, .icon-play, .icon-pause {
+.icon-lyric, .icon-lyric1, .icon-prev, .icon-next, .icon-single-loop,
+.icon-list-loop, .icon-playlist, .icon-play, .icon-pause, .icon-menu {
     font-size: 20px;
     color: #989898;
     cursor: pointer;
@@ -156,16 +158,17 @@ input#s_song_name:focus {
     background-color: #242424;
 }
 .s_song_tabs > ul > li > a {
-    color: #9b9b9b;
+    color: #9b9b9b!important;
     padding: 5px;
     display: block;
+    cursor: pointer;
 }
 .s_song_tabs > ul > li > a:hover {
-    color: #e8e8e8;
+    color: #e8e8e8!important;
     text-decoration: none;
 }
 .s_song_tabs > ul > li.active > a {
-    color: #28a745;
+    color: #28a745!important;
     background-color: #1b1b1c;
 }
 .h-btn {
@@ -194,4 +197,19 @@ input#s_song_name:focus {
 }
 #play-pause {
 
+}
+#btn-menu {
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    top: 0px;
+    background-color: #242424;
+}
+.poetry-catalog {
+    width: 200px;
+    height: 100%;
+    background-color: #242424;
+}
+#card-menu  i.iconfont{
+    font-size: 36px;
 }

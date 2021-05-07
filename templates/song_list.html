@@ -1,7 +1,7 @@
 <div class='s_song_tabs d-flex' style="height: 100%;">
     <ul class="d-flex flex-column">
         {% for result in results %}
-        <li class=""><a href="#{{ result.alias }}">{{ result.platform }}</a></li>
+        <li class=""><a target="#{{ result.alias }}">{{ result.platform }}</a></li>
         {% endfor %}
     </ul>
     {% for result in results %}
