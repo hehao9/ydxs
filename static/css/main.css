@@ -142,11 +142,11 @@ input#s_song_name:focus {
 .playing .play-song{
     color: #28a745;
 }
-.playing .icon-list-play {
+.playing .icon-playing {
     color: #28a745;
     display: block;
 }
-.icon-list-play {
+.icon-playing {
     display: none;
 }
 .s_song_tabs ul {
@@ -210,6 +210,14 @@ input#s_song_name:focus {
     height: 100%;
     background-color: #242424;
 }
-#card-menu  i.iconfont{
-    font-size: 36px;
+.menu-box i.iconfont{
+    font-size: 48px;
+}
+.menu-box {
+    cursor:pointer;
+}
+.menu-box:hover {
+    text-decoration: none;
+    color: #28a745;
+    background-color: #242424;
 }
