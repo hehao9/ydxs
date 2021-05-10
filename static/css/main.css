@@ -3,18 +3,6 @@ body {
     background-color: #1b1b1c;
     font-size: 12px!important;
 }
-#top-bar a {
-    color: #989898;
-    text-align: center;
-    width: 90px;
-    line-height: 35px;
-}
-#top-bar a:hover {
-    color: #e8e8e8;
-    //background-color: #242424;
-    background-color: #2d2d2d;
-    text-decoration: none;
-}
 input#s_song_name:focus {
     outline: 0;
     box-shadow: none!important;
@@ -196,7 +184,7 @@ input#s_song_name:focus {
     border: 1px solid #28a745;
 }
 #play-pause {
-
+    font-size: 28px;
 }
 #btn-menu {
     width: 30px;
@@ -214,6 +202,7 @@ input#s_song_name:focus {
     font-size: 48px;
 }
 .menu-box {
+    font-size: 14px;
     cursor:pointer;
 }
 .menu-box:hover {
