@@ -77,9 +77,9 @@ $(document).ready(function() {
         }
     });
     var play_song = function (data_ele) {
+        $('#s_song_results .song_table tbody tr').removeClass('playing');
         $('#s_song_results .song_table tbody tr').each(function() {
             if ($(this).attr('song-id') == data_ele.attr('song-id')) {
-                $('#s_song_results .song_table tbody tr').removeClass('playing');
                 $(this).addClass('playing');
                 return false;
             }
@@ -89,7 +89,7 @@ $(document).ready(function() {
         $('#song-duration').text(data_ele.attr('song-duration'));
         $('#song-album-pic').attr('src', data_ele.attr('song-album-pic'));
         if ($('#search_list').css('display') == 'block') {
-            $('.s_song_tabs > div, .s_song_tabs > ul').getNiceScroll().resize();
+            $('.s_song_tabs > div').getNiceScroll().resize();
         }
         if ($('.playlist-box').css('display') == 'block') {
             $('#playlist-tab').getNiceScroll().resize();
@@ -133,19 +133,18 @@ $(document).ready(function() {
                         attribute: 'target',
                         animation: false
                     });
-                    $('.s_song_tabs > div, .s_song_tabs > ul').niceScroll({
+                    $('.s_song_tabs > div').niceScroll({
                         cursorcolor: "#444",
                         cursorwidth: 4,
                         cursorborder: 0,
                         cursorborderradius: 0,
                     });
                     $('.s_song_tabs').on("_after", function() {
-                        $('.s_song_tabs > div, .s_song_tabs > ul').getNiceScroll().resize();
+                        $('.s_song_tabs > div').getNiceScroll().resize();
                     });
                     if ($('#playlist-tab > table > tbody > tr.playing').length > 0) {
                         $('#s_song_results .song_table tbody tr').each(function(){
                             if ($(this).attr('song-id') == $('#playlist-tab > table > tbody > tr.playing').attr('song-id')) {
-                                $('#s_song_results .song_table tbody tr').removeClass('playing');
                                 $(this).addClass('playing');
                                 return false;
                             }
@@ -198,7 +197,7 @@ $(document).ready(function() {
                                 console.log(result);
                             });
                             $('#playlist-count').text($('#playlist-tab > table > tbody > tr').length);
-                            $('.s_song_tabs > div, .s_song_tabs > ul').getNiceScroll().resize();
+                            $('.s_song_tabs > div').getNiceScroll().resize();
                             if ($('.playlist-box').css('display') == 'block') {
                                 $('#playlist-tab').getNiceScroll().resize();
                             }
@@ -228,7 +227,7 @@ $(document).ready(function() {
                                         $('#song-duration').text('00:00');
                                         $('#song-album-pic').attr('src', '');
                                         if ($('#search_list').css('display') == 'block') {
-                                            $('.s_song_tabs > div, .s_song_tabs > ul').getNiceScroll().resize();
+                                            $('.s_song_tabs > div').getNiceScroll().resize();
                                         }
                                         $('#playlist-tab').getNiceScroll().resize();
                                         song_progress.slider('setAttribute', 'max', 0);
@@ -247,7 +246,7 @@ $(document).ready(function() {
                                         $('#lyric_result').getNiceScroll().resize();
                                     }
                                     if ($('#search_list').css('display') == 'block') {
-                                        $('.s_song_tabs > div, .s_song_tabs > ul').getNiceScroll().resize();
+                                        $('.s_song_tabs > div').getNiceScroll().resize();
                                     }
                                 }
                                 var count = $('#playlist-tab > table > tbody > tr').length;
@@ -306,7 +305,7 @@ $(document).ready(function() {
                                 console.log(result);
                             });
                             $('#playlist-count').text($('#playlist-tab > table > tbody > tr').length);
-                            $('.s_song_tabs > div, .s_song_tabs > ul').getNiceScroll().resize();
+                            $('.s_song_tabs > div').getNiceScroll().resize();
                             if ($('.playlist-box').css('display') == 'block') {
                                 $('#playlist-tab').getNiceScroll().resize();
                             }
@@ -338,7 +337,7 @@ $(document).ready(function() {
                                         $('#song-duration').text('00:00');
                                         $('#song-album-pic').attr('src', '');
                                         if ($('#search_list').css('display') == 'block') {
-                                            $('.s_song_tabs > div, .s_song_tabs > ul').getNiceScroll().resize();
+                                            $('.s_song_tabs > div').getNiceScroll().resize();
                                         }
                                         $('#playlist-tab').getNiceScroll().resize();
                                         song_progress.slider('setAttribute', 'max', 0);
@@ -357,7 +356,7 @@ $(document).ready(function() {
                                         $('#lyric_result').getNiceScroll().resize();
                                     }
                                     if ($('#search_list').css('display') == 'block') {
-                                        $('.s_song_tabs > div, .s_song_tabs > ul').getNiceScroll().resize();
+                                        $('.s_song_tabs > div').getNiceScroll().resize();
                                     }
                                 }
                                 var count = $('#playlist-tab > table > tbody > tr').length;
@@ -439,7 +438,7 @@ $(document).ready(function() {
                 $('#lyric_result').getNiceScroll().resize();
             }
             if ($('#search_list').css('display') == 'block') {
-                $('.s_song_tabs > div, .s_song_tabs > ul').getNiceScroll().resize();
+                $('.s_song_tabs > div').getNiceScroll().resize();
             }
         });
     });
@@ -458,7 +457,7 @@ $(document).ready(function() {
                 $('#lyric').css('color', '');
                 $('#lyric').attr('class', 'iconfont icon-lyric');
                 $('#cur_title_line').show();
-                $('.s_song_tabs > div, .s_song_tabs > ul').getNiceScroll().resize();
+                $('.s_song_tabs > div').getNiceScroll().resize();
             }
             if ($('.playlist-box').css('display') == 'block') {
                 $('#playlist-tab').getNiceScroll().resize();
@@ -575,7 +574,7 @@ $(document).ready(function() {
         $('#song-duration').text('00:00');
         $('#song-album-pic').attr('src', '');
         if ($('#search_list').css('display') == 'block') {
-            $('.s_song_tabs > div, .s_song_tabs > ul').getNiceScroll().resize();
+            $('.s_song_tabs > div').getNiceScroll().resize();
         }
         $('#playlist-tab').getNiceScroll().resize();
         song_progress.slider('setAttribute', 'max', 0);
@@ -596,6 +595,23 @@ $(document).ready(function() {
     });
     setTimeout(function () {
         //console.log($('#visitor_id').val());
+        $.get('/music/top/list', function(results) {
+                    $('#s_song_results').html(results);
+                    $('.s_song_tabs').tabslet({
+                        mouseevent: 'click',
+                        attribute: 'target',
+                        animation: false
+                    });
+                    $('.s_song_tabs > div').niceScroll({
+                        cursorcolor: "#444",
+                        cursorwidth: 4,
+                        cursorborder: 0,
+                        cursorborderradius: 0,
+                    });
+                    $('.s_song_tabs').on("_after", function() {
+                        $('.s_song_tabs > div').getNiceScroll().resize();
+                    });
+        });
         $.post("/music/play/list", {visitor_id: $('#visitor_id').val()}, function(play_list){
             var html = "";
             $.each(play_list, function(i, v) {
@@ -642,7 +658,7 @@ $(document).ready(function() {
                         $('#song-duration').text('00:00');
                         $('#song-album-pic').attr('src', '');
                         if ($('#search_list').css('display') == 'block') {
-                            $('.s_song_tabs > div, .s_song_tabs > ul').getNiceScroll().resize();
+                            $('.s_song_tabs > div').getNiceScroll().resize();
                         }
                         $('#playlist-tab').getNiceScroll().resize();
                         song_progress.slider('setAttribute', 'max', 0);
@@ -661,7 +677,7 @@ $(document).ready(function() {
                         $('#lyric_result').getNiceScroll().resize();
                     }
                     if ($('#search_list').css('display') == 'block') {
-                        $('.s_song_tabs > div, .s_song_tabs > ul').getNiceScroll().resize();
+                        $('.s_song_tabs > div').getNiceScroll().resize();
                     }
                 }
                 var count = $('#playlist-tab > table > tbody > tr').length;

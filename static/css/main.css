@@ -138,7 +138,6 @@ input#s_song_name:focus {
     display: none;
 }
 .s_song_tabs ul {
-    width: 30px;
     text-align: center;
     list-style-type: none;
     margin: 0;
@@ -147,7 +146,7 @@ input#s_song_name:focus {
 }
 .s_song_tabs > ul > li > a {
     color: #9b9b9b!important;
-    padding: 5px;
+    padding: 6px 10px;
     display: block;
     cursor: pointer;
 }
@@ -185,13 +184,6 @@ input#s_song_name:focus {
 }
 #play-pause {
     font-size: 28px;
-}
-#btn-menu {
-    width: 30px;
-    height: 30px;
-    position: fixed;
-    top: 0px;
-    background-color: #242424;
 }
 .poetry-catalog {
     width: 200px;

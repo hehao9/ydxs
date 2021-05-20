@@ -1,0 +1,26 @@
+<div class='s_song_tabs d-flex flex-column' style="height: 100%;">
+    <ul class="d-flex">
+        {% for result in results %}
+        <li class=""><a target="#{{ result.alias }}">{{ result.platform }}</a></li>
+        {% endfor %}
+    </ul>
+    {% for result in results %}
+    <div id='{{ result.alias }}' class="flex-grow-1">
+        <div class="d-flex flex-wrap">
+            <img src="http://p3.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg?param=100y100" width="100" height="100" style="margin-top: 6px;">
+            <img src="http://p3.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg?param=100y100" width="100" height="100" style="margin-top: 6px;">
+            <img src="http://p3.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg?param=100y100" width="100" height="100" style="margin-top: 6px;">
+            <img src="http://p3.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg?param=100y100" width="100" height="100" style="margin-top: 6px;">
+            <img src="http://p3.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg?param=100y100" width="100" height="100" style="margin-top: 6px;">
+            <img src="http://p3.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg?param=100y100" width="100" height="100" style="margin-top: 6px;">
+            <img src="http://p3.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg?param=100y100" width="100" height="100" style="margin-top: 6px;">
+            <img src="http://p3.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg?param=100y100" width="100" height="100" style="margin-top: 6px;">
+            <img src="http://p3.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg?param=100y100" width="100" height="100" style="margin-top: 6px;">
+            <img src="http://p3.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg?param=100y100" width="100" height="100" style="margin-top: 6px;">
+            <img src="http://p3.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg?param=100y100" width="100" height="100" style="margin-top: 6px;">
+            <img src="http://p3.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg?param=100y100" width="100" height="100" style="margin-top: 6px;">
+            <img src="http://p3.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg?param=100y100" width="100" height="100" style="margin-top: 6px;">
+        </div>
+    </div>
+    {% endfor %}
+</div>

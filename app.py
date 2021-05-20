@@ -19,6 +19,24 @@ def music():
     return render_template('music.html')
 
 
+@app.route('/music/top/list')
+def music_top_list():
+    results = [{
+        'platform': '网易云音乐',
+        'alias': 'netease-cloud',
+        'song_list': [],
+    }, {
+        'platform': '酷狗音乐',
+        'alias': 'kugou',
+        'song_list': [],
+    }, {
+        'platform': 'Q Q音乐',
+        'alias': 'qq',
+        'song_list': [],
+    }]
+    return render_template('top_list.html', results=results)
+
+
 @app.route('/music/play/list', methods=['post'])
 def music_play_list():
     db = Sqlite3DB()

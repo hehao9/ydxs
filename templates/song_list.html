@@ -1,5 +1,5 @@
-<div class='s_song_tabs d-flex' style="height: 100%;">
-    <ul class="d-flex flex-column">
+<div class='s_song_tabs d-flex flex-column' style="height: 100%;">
+    <ul class="d-flex">
         {% for result in results %}
         <li class=""><a target="#{{ result.alias }}">{{ result.platform }}</a></li>
         {% endfor %}
@@ -23,9 +23,6 @@
             <tr song-id="{{ song.id }}" song-name="{{ song.name }}" song-singer="{{ song.singer }}"
                 song-duration="{{ song.duration }}" song-album-pic="{{ song.album_pic }}" song-platform="{{ result.alias }}"
                 song-album-id="{{ song.album_id }}" song-hash="{{ song.hash }}" song-mid="{{ song.mid }}">
-                <td style="width: 22px; padding-right: 0px;">
-                    <i class="iconfont icon-playing" style="font-size: 12px;"></i>
-                </td>
                 <td style="position: relative;">
                     <span class="play-song">{{ song.name }}</span>
                     {% if song.is_only == 1 %}
