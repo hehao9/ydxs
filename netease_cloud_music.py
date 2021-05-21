@@ -2,9 +2,11 @@ import codecs
 import json
 import random
 import base64
+import re
 import requests
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad
+from pyquery import PyQuery
 import urllib3
 urllib3.disable_warnings()
 
@@ -119,6 +121,30 @@ def get_music_detail(song_id):
     return {'url': song_url, 'lyric': song_lyric}
 
 
+def get_top_list():
+    top_list = []
+    url = 'https://music.163.com/discover/toplist'
+    headers = {
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
+    }
+    response = requests.get(url, headers=headers)
+    doc = PyQuery(response.text)
+    for h2 in doc('#toplist .n-minelst h2').items():
+        lis = []
+        for li in h2.next('ul').children('li').items():
+            lis.append({
+                'title': li('a.avatar img').attr('alt'),
+                'src': li('a.avatar img').attr('src').replace('40y40', '120y120'),
+                'top_id': re.search('id=(.*)', li('a.avatar').attr('href')).group(1),
+            })
+        top_list.append({
+            'title': h2.text(),
+            'list': lis,
+        })
+    return top_list
+
+
 if __name__ == '__main__':
-    print(get_music_search('寂寞沙洲冷'))
+    # print(get_music_search('寂寞沙洲冷'))
     # print(get_music_detail(1822207727))
+    get_top_list()

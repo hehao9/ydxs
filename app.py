@@ -24,15 +24,15 @@ def music_top_list():
     results = [{
         'platform': '网易云音乐',
         'alias': 'netease-cloud',
-        'song_list': [],
+        'top_list': netease_cloud_music.get_top_list(),
     }, {
         'platform': '酷狗音乐',
         'alias': 'kugou',
-        'song_list': [],
+        'top_list': [],
     }, {
         'platform': 'Q Q音乐',
         'alias': 'qq',
-        'song_list': [],
+        'top_list': [],
     }]
     return render_template('top_list.html', results=results)
 

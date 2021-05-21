@@ -202,3 +202,17 @@ input#s_song_name:focus {
     color: #28a745;
     background-color: #242424;
 }
+.top-box {
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+}
+.top-box img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    cursor: pointer;
+}
+.top-box:hover img {
+    opacity: 1;
+}
