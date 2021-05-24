@@ -37,6 +37,31 @@ def music_top_list():
     return render_template('top_list.html', results=results)
 
 
+@app.route('/music/top/list/search', methods=['post'])
+def music_top_list_search():
+    results = []
+    song_platform = request.form['song_platform']
+    if song_platform == 'netease-cloud':
+        results = [{
+            'platform': '网易云音乐',
+            'alias': 'netease-cloud',
+            'song_list': netease_cloud_music.get_top_list_search(request.form['top_id']),
+        }]
+    if song_platform == 'kugou':
+        results = [{
+            'platform': '酷狗音乐',
+            'alias': 'kugou',
+            'song_list': [],
+        }]
+    if song_platform == 'qq':
+        results = [{
+            'platform': 'QQ音乐',
+            'alias': 'qq',
+            'song_list': [],
+        }]
+    return render_template('song_list.html', results=results)
+
+
 @app.route('/music/play/list', methods=['post'])
 def music_play_list():
     db = Sqlite3DB()
@@ -84,7 +109,7 @@ def music_search(song_name):
         'alias': 'kugou',
         'song_list': kugou_music.get_music_search(song_name),
     }, {
-        'platform': 'Q Q音乐',
+        'platform': 'QQ音乐',
         'alias': 'qq',
         'song_list': qq_music.get_music_search(song_name),
     }]

@@ -144,7 +144,44 @@ def get_top_list():
     return top_list
 
 
+def get_top_list_search(top_id):
+    song_list = []
+    url = f'https://music.163.com/discover/toplist?id={top_id}'
+    headers = {
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
+    }
+    response = requests.get(url, headers=headers)
+    doc = PyQuery(response.text)
+    for song in json.loads(doc('#song-list-pre-data').text()):
+        millis = int(song.get('duration'))
+        seconds = int((millis / 1000) % 60)
+        seconds = f'0{seconds}' if seconds < 10 else seconds
+        minutes = int(millis / (1000 * 60))
+        minutes = f'0{minutes}' if minutes < 10 else minutes
+        duration = f'{minutes}:{seconds}'
+        is_vip = 0
+        if (song['privilege']['fee'] == 0 or song['privilege']['payed']) and song['privilege']['pl'] > 0 and \
+                song['privilege']['dl'] == 0:
+            is_vip = 1
+        if song['privilege']['dl'] == 0 and song['privilege']['pl'] == 0:
+            is_vip = 1
+        song_list.append({
+            'id': song.get('id'),
+            'name': song.get('name'),
+            'singer': song.get('artists')[0].get('name'),
+            'album': song.get('album').get('name'),
+            'album_pic': song.get('album').get('picUrl'),
+            'duration': duration,
+            # 'is_only': 0,
+            'has_mv': 1 if song.get('mvid') > 0 else 0,
+            'mv_url': f"https://music.163.com/#/mv?id={song.get('mvid')}",
+            'is_vip': is_vip,
+        })
+    return song_list
+
+
 if __name__ == '__main__':
     # print(get_music_search('寂寞沙洲冷'))
     # print(get_music_detail(1822207727))
-    get_top_list()
+    # get_top_list()
+    get_top_list_search('19723756')

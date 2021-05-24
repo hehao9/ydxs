@@ -11,7 +11,7 @@
         <div class="d-flex flex-wrap">
             {% for li in top.list %}
             <div class="top-box">
-                <img src="{{ li.src }}" title="{{ li.title }}" top-id="{{ li.top_id }}">
+                <img src="{{ li.src }}" title="{{ li.title }}" top-id="{{ li.top_id }}" song-platform="{{ result.alias }}">
             </div>
             {% endfor %}
         </div>
