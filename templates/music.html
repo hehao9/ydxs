@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/mushroom.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-slider.min.css') }}">
-    <link rel="stylesheet" href="https://at.alicdn.com/t/font_2393058_ov9pb20otuo.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_2393058_rs93dl9dsy.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
@@ -23,11 +23,28 @@
         <div class="flex-grow-1" style="height: 100%;">
             <div id="search_list" style="height: 100%;">
                 <div class="d-flex flex-column" style="height: 100%;">
-                    <div class="d-flex" style="background-color: #242424; border-bottom: 1px solid #131313;">
-                        <div class="align-self-center" style="width: 30px; text-align: center;">
-                            <i class="iconfont icon-search" style="color: #989898; font-size: 20px;"></i></div>
-                        <input id="s_song_name" type="text" class="border-0 flex-grow-1"
-                               autocomplete="off" placeholder="" />
+                    <div id="top-nav" class="d-flex" style="background-color: #242424; border-bottom: 1px solid #131313;">
+                        <div style="height: 40px;"></div>
+                        <div class="align-self-center" style="margin: 5px 10px;">
+                            <i class="iconfont icon-home" onclick="window.open('/')"></i></div>
+                        <div class="align-self-center" style="margin: 5px 10px;">
+                            <i class="iconfont icon-music" style="color: #28a745;"></i></div>
+                        <div class="align-self-center" style="margin: 5px 10px;">
+                            <i class="iconfont icon-poetry" onclick="window.open('/poetry')"></i></div>
+                        <div class="align-self-center" style="margin: 5px 10px;">
+                            <i class="iconfont icon-image" onclick="window.open('/image')"></i></div>
+                        <div class="align-self-center" style="margin: 5px 10px;">
+                            <i class="iconfont icon-video" onclick="window.open('/video')"></i></div>
+                        <div class="align-self-center flex-grow-1"></div>
+                        <div class="align-self-center" style="margin: 5px 10px;">
+                            <i id="song-search" class="iconfont icon-search"></i></div>
+                        <div class="align-self-center" style="margin: 5px 10px; display: none;">
+                            <i class="iconfont icon-search" style="color: #989898;"></i></div>
+                        <div class="align-self-center flex-grow-1" style="margin: 5px 10px; display: none;">
+                            <input id="s_song_name" type="text" class="border-0"
+                                   style="width: 100%;" autocomplete="off" placeholder="歌曲搜索" /></div>
+                        <div class="align-self-center" style="margin: 5px 10px; display: none;">
+                            <i id="song-search-cancel" class="iconfont icon-cancel" style="font-size: 20px;"></i></div>
                     </div>
                     <div id="s_song_results" class="flex-grow-1" style="overflow: hidden;"></div>
                 </div>
