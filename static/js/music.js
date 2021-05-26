@@ -76,11 +76,16 @@ $(document).ready(function() {
         }
     });
     $('#song-search').click(function() {
-        $('#top-nav').children('div.align-self-center').toggle('slow');
-        $('#s_song_name').focus();
+        $('.top-nav_group-1').fadeToggle('fast', function() {
+            $('.top-nav_group-2').fadeToggle('fast', function() {
+                $('#s_song_name').focus();
+            });
+        });
     });
     $('#song-search-cancel').click(function() {
-        $('#top-nav').children('div.align-self-center').toggle('slow');
+        $('.top-nav_group-2').fadeToggle('fast', function() {
+            $('.top-nav_group-1').fadeToggle('fast');
+        });
     });
     var play_song = function(data_ele) {
         $('#s_song_results .song_table tbody tr').removeClass('playing');
