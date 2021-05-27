@@ -162,7 +162,7 @@ input#s_song_name:focus {
 .h-btn {
     display: none;
 }
-#s_song_results .song_table tbody tr:hover .h-btn {
+.search_content .song_table tbody tr:hover .h-btn {
     display: block;
     height: 100%;
     display: flex;

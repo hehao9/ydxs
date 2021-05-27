@@ -1,37 +1,26 @@
-<div class='s_song_tabs d-flex flex-column' style="height: 100%;">
-    <ul class="d-flex">
-        {% for result in results %}
-        <li class=""><a target="#{{ result.alias }}">{{ result.platform }}</a></li>
-        {% endfor %}
-    </ul>
-    {% for result in results %}
-    <div id='{{ result.alias }}' class="flex-grow-1">
-        <table class="song_table">
-            <tbody>
-            {% for song in result.song_list %}
-            <tr song-id="{{ song.id }}" song-name="{{ song.name }}" song-singer="{{ song.singer }}"
-                song-duration="{{ song.duration }}" song-album-pic="{{ song.album_pic }}" song-platform="{{ result.alias }}"
-                song-album-id="{{ song.album_id }}" song-hash="{{ song.hash }}" song-mid="{{ song.mid }}">
-                <td style="position: relative;">
-                    <span class="play-song">{{ song.name }}</span>
-                    {% if song.is_only == 1 %}
-                    <span class="badge badge-custom">独家</span>
-                    {% endif %}
-                    {% if song.has_mv == 1 %}
-                    <span class="badge badge-custom play-mv" mv-url="{{ song.mv_url }}" style="cursor: pointer;">MV</span>
-                    {% endif %}
-                    {% if song.is_vip == 1 %}
-                    <span class="badge badge-custom">VIP</span>
-                    {% endif %}
-                    <div class="h-btn"><i class="iconfont icon-add"></i></div>
-                </td>
-                <td>{{ song.singer }}</td>
-                <td>{{ song.album }}</td>
-                <td>{{ song.duration }}</td>
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+<table class="song_table">
+    <tbody>
+    {% for song in result.song_list %}
+    <tr song-id="{{ song.id }}" song-name="{{ song.name }}" song-singer="{{ song.singer }}"
+        song-duration="{{ song.duration }}" song-album-pic="{{ song.album_pic }}" song-platform="{{ result.alias }}"
+        song-album-id="{{ song.album_id }}" song-hash="{{ song.hash }}" song-mid="{{ song.mid }}">
+        <td style="position: relative;">
+            <span class="play-song">{{ song.name }}</span>
+            {% if song.is_only == 1 %}
+            <span class="badge badge-custom">独家</span>
+            {% endif %}
+            {% if song.has_mv == 1 %}
+            <span class="badge badge-custom play-mv" mv-url="{{ song.mv_url }}" style="cursor: pointer;">MV</span>
+            {% endif %}
+            {% if song.is_vip == 1 %}
+            <span class="badge badge-custom">VIP</span>
+            {% endif %}
+            <div class="h-btn"><i class="iconfont icon-add"></i></div>
+        </td>
+        <td>{{ song.singer }}</td>
+        <td>{{ song.album }}</td>
+        <td>{{ song.duration }}</td>
+    </tr>
     {% endfor %}
-</div>
+    </tbody>
+</table>

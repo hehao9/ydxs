@@ -16,11 +16,6 @@ def hello_world():
 
 @app.route('/music')
 def music():
-    return render_template('music.html')
-
-
-@app.route('/music/top/list')
-def music_top_list():
     results = [{
         'platform': '网易云音乐',
         'alias': 'netease-cloud',
@@ -30,36 +25,36 @@ def music_top_list():
         'alias': 'kugou',
         'top_list': [],
     }, {
-        'platform': 'Q Q音乐',
+        'platform': 'QQ音乐',
         'alias': 'qq',
         'top_list': [],
     }]
-    return render_template('top_list.html', results=results)
+    return render_template('music.html', results=results)
 
 
 @app.route('/music/top/list/search', methods=['post'])
 def music_top_list_search():
-    results = []
+    result = {}
     song_platform = request.form['song_platform']
     if song_platform == 'netease-cloud':
-        results = [{
+        result = {
             'platform': '网易云音乐',
             'alias': 'netease-cloud',
             'song_list': netease_cloud_music.get_top_list_search(request.form['top_id']),
-        }]
+        }
     if song_platform == 'kugou':
-        results = [{
+        result = {
             'platform': '酷狗音乐',
             'alias': 'kugou',
             'song_list': [],
-        }]
+        }
     if song_platform == 'qq':
-        results = [{
+        result = {
             'platform': 'QQ音乐',
             'alias': 'qq',
             'song_list': [],
-        }]
-    return render_template('song_list.html', results=results)
+        }
+    return render_template('song_list.html', result=result)
 
 
 @app.route('/music/play/list', methods=['post'])
@@ -98,22 +93,30 @@ def music_play_list_del():
     return jsonify({'status': 1, 'msg': 'success'})
 
 
-@app.route('/music/search/<song_name>')
-def music_search(song_name):
-    results = [{
-        'platform': '网易云音乐',
-        'alias': 'netease-cloud',
-        'song_list': netease_cloud_music.get_music_search(song_name),
-    }, {
-        'platform': '酷狗音乐',
-        'alias': 'kugou',
-        'song_list': kugou_music.get_music_search(song_name),
-    }, {
-        'platform': 'QQ音乐',
-        'alias': 'qq',
-        'song_list': qq_music.get_music_search(song_name),
-    }]
-    return render_template('song_list.html', results=results)
+@app.route('/music/search', methods=['post'])
+def music_search():
+    result = {}
+    song_name = request.form['song_name']
+    song_platform = request.form['song_platform']
+    if song_platform == 'netease-cloud':
+        result = {
+            'platform': '网易云音乐',
+            'alias': 'netease-cloud',
+            'song_list': netease_cloud_music.get_music_search(song_name),
+        }
+    if song_platform == 'kugou':
+        result = {
+            'platform': '酷狗音乐',
+            'alias': 'kugou',
+            'song_list': kugou_music.get_music_search(song_name),
+        }
+    if song_platform == 'qq':
+        result = {
+            'platform': 'QQ音乐',
+            'alias': 'qq',
+            'song_list': qq_music.get_music_search(song_name),
+        }
+    return render_template('song_list.html', result=result)
 
 
 @app.route('/music/play/detail', methods=['post'])

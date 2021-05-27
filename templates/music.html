@@ -51,7 +51,32 @@
                             </div>
                         </div>
                     </div>
-                    <div id="s_song_results" class="flex-grow-1" style="overflow: hidden;"></div>
+                    <div class="flex-grow-1" style="overflow: hidden;">
+                        <div class='s_song_tabs d-flex flex-column' style="height: 100%;">
+                            <ul class="d-flex">
+                                {% for result in results %}
+                                <li class=""><a target="#{{ result.alias }}">{{ result.platform }}</a></li>
+                                {% endfor %}
+                            </ul>
+                            {% for result in results %}
+                            <div id='{{ result.alias }}' class="flex-grow-1">
+                                <div class="default_content">
+                                    {% for top in result.top_list %}
+                                    <div style="padding: 6px 10px;">{{ top.title }}</div>
+                                    <div class="d-flex flex-wrap">
+                                        {% for li in top.list %}
+                                        <div class="top-box">
+                                            <img src="{{ li.src }}" title="{{ li.title }}" top-id="{{ li.top_id }}" song-platform="{{ result.alias }}">
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="search_content" style="display: none;"></div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="page-lyric" style="height: 100%; padding: 30px 0px;">
