@@ -23,7 +23,7 @@ def music():
     }, {
         'platform': '酷狗音乐',
         'alias': 'kugou',
-        'top_list': [],
+        'top_list': kugou_music.get_top_list(),
     }, {
         'platform': 'QQ音乐',
         'alias': 'qq',
@@ -46,7 +46,7 @@ def music_top_list_search():
         result = {
             'platform': '酷狗音乐',
             'alias': 'kugou',
-            'song_list': [],
+            'song_list': kugou_music.get_top_list_search(request.form['top_id']),
         }
     if song_platform == 'qq':
         result = {

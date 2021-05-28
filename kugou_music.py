@@ -1,5 +1,9 @@
+import json
+
 import requests
+import re
 from hashlib import md5
+from pyquery import PyQuery
 import urllib3
 urllib3.disable_warnings()
 
@@ -117,6 +121,62 @@ def get_music_detail(song_album_id, song_hash):
     return {'url': song_url, 'lyric': song_lyric}
 
 
+def get_top_list():
+    top_list = []
+    url = 'https://www.kugou.com/yy/html/rank.html'
+    headers = {
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
+    }
+    response = requests.get(url, headers=headers)
+    doc = PyQuery(response.text)
+    for pc_rank in doc('.pc_temp_side > .pc_rank_sidebar').items():
+        lis = []
+        for li in pc_rank('ul > li').items():
+            lis.append({
+                'title': li('a').text(),
+                'src': re.search('background-image:url\((.*?)\);', li('a > span').attr('style')).group(1),
+                'top_id': re.search('1-(.*?).html', li('a').attr('href')).group(1),
+            })
+        top_list.append({
+            'title': pc_rank('h3 > a').text(),
+            'list': lis,
+        })
+    return top_list
+
+
+def get_top_list_search(top_id):
+    song_list = []
+    url = f'https://www.kugou.com/yy/rank/home/1-{top_id}.html?from=rank'
+    headers = {
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
+    }
+    response = requests.get(url, headers=headers)
+    for song in json.loads(re.search('global.features = (.*?)}];', response.text).group(1) + '}]'):
+        millis = int(song.get('timeLen'))
+        seconds = int(millis % 60)
+        seconds = f'0{seconds}' if seconds < 10 else seconds
+        minutes = int(millis / 60)
+        minutes = f'0{minutes}' if minutes < 10 else minutes
+        duration = f'{minutes}:{seconds}'
+        song_list.append({
+            'id': song.get('encrypt_id'),
+            'name': song.get('FileName'),
+            'singer': song.get('FileName'),
+            'album': '',
+            'album_pic': '',
+            'duration': duration,
+            'hash': song.get('Hash'),
+            'album_id': song.get('album_id'),
+            # 'is_only': 0,
+            # 'has_mv': 0,
+            # 'mv_url': "",
+            # 'is_vip': 0,
+        })
+    return song_list
+
+
 if __name__ == '__main__':
     # print(get_music_search('寂寞沙洲冷'))
-    print(get_music_detail(964612, '843E2868FC13FA5D59322C629216FD59'))
+    # print(get_music_detail(964612, '843E2868FC13FA5D59322C629216FD59'))
+    # get_top_list()
+    get_top_list_search('8888')

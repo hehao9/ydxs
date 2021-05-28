@@ -1,7 +1,7 @@
 import base64
 import random
 import string
-
+from pyquery import PyQuery
 import requests
 import hashlib
 import urllib3
@@ -79,6 +79,28 @@ def get_music_detail(mid):
                     'c': line_lyric.split(']')[1],
                 })
     return {'url': song_url, 'lyric': song_lyric}
+
+
+def get_top_list():
+    top_list = []
+    url = 'https://music.163.com/discover/toplist'
+    headers = {
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
+    }
+    response = requests.get(url, headers=headers)
+    doc = PyQuery(response.text)
+    return top_list
+
+
+def get_top_list_search(top_id):
+    song_list = []
+    url = f'https://music.163.com/discover/toplist?id={top_id}'
+    headers = {
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
+    }
+    response = requests.get(url, headers=headers)
+    doc = PyQuery(response.text)
+    return song_list
 
 
 if __name__ == '__main__':
