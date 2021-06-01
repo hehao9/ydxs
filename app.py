@@ -27,7 +27,7 @@ def music():
     }, {
         'platform': 'QQ音乐',
         'alias': 'qq',
-        'top_list': [],
+        'top_list': qq_music.get_top_list(),
     }]
     return render_template('music.html', results=results)
 
@@ -52,7 +52,7 @@ def music_top_list_search():
         result = {
             'platform': 'QQ音乐',
             'alias': 'qq',
-            'song_list': [],
+            'song_list': qq_music.get_top_list_search(request.form['top_id']),
         }
     return render_template('song_list.html', result=result)
 

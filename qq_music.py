@@ -1,3 +1,5 @@
+import json
+import re
 import base64
 import random
 import string
@@ -83,26 +85,58 @@ def get_music_detail(mid):
 
 def get_top_list():
     top_list = []
-    url = 'https://music.163.com/discover/toplist'
-    headers = {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
-    }
-    response = requests.get(url, headers=headers)
-    doc = PyQuery(response.text)
+    url = f'https://y.qq.com/n/ryqq/toplist/4'
+    response = requests.get(url, verify=False)
+    data = re.search('window.__INITIAL_DATA__ =(.*?)}</script>', response.text).group(1) + '}'
+    for pc_rank in json.loads(data.replace('undefined', '"undefined"')).get('topNavData'):
+        lis = []
+        for li in pc_rank.get('toplist'):
+            lis.append({
+                'title': li.get('title'),
+                'src': '',
+                'top_id': li.get('topId'),
+            })
+        top_list.append({
+            'title': pc_rank.get('groupName'),
+            'list': lis,
+        })
     return top_list
 
 
 def get_top_list_search(top_id):
     song_list = []
-    url = f'https://music.163.com/discover/toplist?id={top_id}'
-    headers = {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
-    }
-    response = requests.get(url, headers=headers)
-    doc = PyQuery(response.text)
+    data = '{"comm":{"cv":4747474,"ct":24,"format":"json","inCharset":"utf-8","outCharset":"utf-8","notice":0,"platform":"yqq.json","needNewCode":1,"uin":0,"g_tk_new_20200303":5381,"g_tk":5381},"req_1":{"module":"musicToplist.ToplistInfoServer","method":"GetDetail","param":{"topid":' + top_id + ',"offset":0,"num":20,"period":"2021-06-01"}},"req_2":{"module":"music.globalComment.CommentReadServer","method":"GetNewCommentList","param":{"BizType":4,"BizId":"' + top_id + '","LastCommentSeqNo":"","PageSize":25,"PageNum":0,"FromCommentId":"","WithHot":1}},"req_3":{"module":"music.globalComment.CommentReadServer","method":"GetHotCommentList","param":{"BizType":4,"BizId":"' + top_id + '","LastCommentSeqNo":"","PageSize":15,"PageNum":0,"HotType":2,"WithAirborne":1}}}'
+    sign = get_sign(data)
+    url = f'https://u.y.qq.com/cgi-bin/musics.fcg?_=1622518194088&sign={sign}'
+    response = requests.post(url, data=data, verify=False)
+    resp_json = response.json()
+    if resp_json.get('code') == 0:
+        songs = resp_json.get('req_1').get('data').get('songInfoList')
+        for song in songs:
+            millis = int(song.get('interval'))
+            seconds = int(millis % 60)
+            seconds = f'0{seconds}' if seconds < 10 else seconds
+            minutes = int(millis / 60)
+            minutes = f'0{minutes}' if minutes < 10 else minutes
+            duration = f'{minutes}:{seconds}'
+            song_list.append({
+                'id': song.get('id'),
+                'name': song.get('title'),
+                'singer': song.get('singer')[0].get('name'),
+                'album': song.get('album').get('name'),
+                'album_pic': f"https://y.gtimg.cn/music/photo_new/T002R300x300M000{song.get('album').get('mid')}.jpg?max_age=2592000",
+                'duration': duration,
+                'mid': song.get('mid'),
+                'is_only': 1 if song.get('isonly') == 1 else 0,
+                'has_mv': 1 if song.get('mv').get('id') > 0 and song.get('mv').get('vid') else 0,
+                'mv_url': f"https://y.qq.com/n/yqq/mv/v/{song.get('mv').get('vid')}.html",
+                'is_vip': 1 if song.get('pay').get('pay_month') and song.get('pay').get('pay_month') > 0 and
+                               song.get('pay').get('pay_play') > 0 else 0,
+            })
     return song_list
 
 
 if __name__ == '__main__':
     # print(get_music_search('分身'))
-    print(get_music_detail('000RFNJc4AmUuD'))
+    # print(get_music_detail('000RFNJc4AmUuD'))
+    get_top_list_search('4')
