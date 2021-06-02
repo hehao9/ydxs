@@ -655,6 +655,90 @@ $(document).ready(function() {
             dynamic_song_list(results, song_platform);
         });
     });
+    //绘制文字到canvas，判断换行位置，和设置canvas高度
+    function canvasWrapText(options) {
+        var settings = {
+            canvas:document.getElementsByTagName("canvas")[0], //canvas对象，必填，不填写默认找到页面中的第一个canvas
+            canvasWidth:480, //canvas的宽度
+            drawStartX:10, //绘制字符串起始x坐标
+            drawStartY:30, //绘制字符串起始y坐标
+            lineHeight:30, //文字的行高
+            font:"24px 'Microsoft Yahei'", //文字样式
+            text:"请修改掉默认的配置", //需要绘制的文本
+            drawWidth:460, //文字显示的宽度
+            color:"#000000", //文字的颜色
+            backgroundColor:"#ffffff", //背景颜色
+        };
+
+        //将传入的配置覆盖掉默认配置
+        if(!!options && typeof options === "object"){
+            for(var i in options){
+                settings[i] = options[i];
+            }
+        }
+
+        //获取2d的上线文开始设置相关属性
+        var canvas = settings.canvas;
+        canvas.width = settings.canvasWidth;
+        var ctx = canvas.getContext("2d");
+
+        //绘制背景色
+        ctx.fillStyle = settings.backgroundColor;
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+
+        //绘制文字
+        ctx.font = settings.font;
+        ctx.fillStyle = settings.color;
+        var lineWidth = 0; //当前行的绘制的宽度
+        var lastTextIndex = 0; //已经绘制上canvas最后的一个字符的下标
+        //由于改变canvas 的高度会导致绘制的纹理被清空，所以，不预先绘制，先放入到一个数组当中
+        var arr = [];
+        for(var i = 0; i<settings.text.length; i++){
+            //获取当前的截取的字符串的宽度
+            lineWidth = ctx.measureText(settings.text.substr(lastTextIndex,i-lastTextIndex)).width;
+
+            if(lineWidth > settings.drawWidth){
+                //判断最后一位是否是标点符号
+                if(judgePunctuationMarks(settings.text[i-1])){
+                    arr.push(settings.text.substr(lastTextIndex,i-lastTextIndex));
+                    lastTextIndex = i;
+                }else{
+                    arr.push(settings.text.substr(lastTextIndex,i-lastTextIndex-1));
+                    lastTextIndex = i-1;
+                }
+            }
+            //将最后多余的一部分添加到数组
+            if(i === settings.text.length - 1){
+                arr.push(settings.text.substr(lastTextIndex,i-lastTextIndex+1));
+            }
+        }
+
+        //根据arr的长度设置canvas的高度
+        canvas.height = arr.length*settings.lineHeight+settings.drawStartY;
+
+        ctx.font = settings.font;
+        ctx.fillStyle = settings.color;
+        for(var i =0; i<arr.length; i++){
+            ctx.fillText(arr[i],settings.drawStartX,settings.drawStartY+i*settings.lineHeight);
+        }
+
+        //判断是否是需要避开的标签符号
+        function judgePunctuationMarks(value) {
+            var arr = [".",",",";","?","!",":","\"","，","。","？","！","；","：","、"];
+            for(var i = 0; i< arr.length; i++){
+                if(value === arr[i]){
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        return canvas.toDataURL();
+    }
+
+    //调用函数获取到img的data数据
+    var data = canvasWrapText({canvas:document.getElementById("canvas"),text:string});
+
     setTimeout(function () {
         $.post("/music/play/list", {visitor_id: $('#visitor_id').val()}, function(play_list){
             var html = "";

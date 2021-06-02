@@ -3,7 +3,6 @@ import re
 import base64
 import random
 import string
-from pyquery import PyQuery
 import requests
 import hashlib
 import urllib3
