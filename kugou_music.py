@@ -1,5 +1,4 @@
 import json
-
 import requests
 import re
 from hashlib import md5
@@ -127,7 +126,7 @@ def get_top_list():
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
     }
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, verify=False)
     doc = PyQuery(response.text)
     for pc_rank in doc('.pc_temp_side > .pc_rank_sidebar').items():
         lis = []
@@ -150,7 +149,7 @@ def get_top_list_search(top_id):
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
     }
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, verify=False)
     for song in json.loads(re.search('global.features = (.*?)}];', response.text).group(1) + '}]'):
         millis = int(song.get('timeLen'))
         seconds = int(millis % 60)

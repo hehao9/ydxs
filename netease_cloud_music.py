@@ -127,7 +127,7 @@ def get_top_list():
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
     }
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, verify=False)
     doc = PyQuery(response.text)
     for h2 in doc('#toplist .n-minelst h2').items():
         lis = []
@@ -150,7 +150,7 @@ def get_top_list_search(top_id):
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
     }
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, verify=False)
     doc = PyQuery(response.text)
     for song in json.loads(doc('#song-list-pre-data').text()):
         millis = int(song.get('duration'))

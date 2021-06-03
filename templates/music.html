@@ -73,8 +73,14 @@
                                             <div class="top-box">
                                                 <img src="{{ li.src }}" title="{{ li.title }}" top-id="{{ li.top_id }}" song-platform="{{ result.alias }}">
                                             </div>
+                                            {% elif result.alias == "kugou" %}
+                                            <div class="top-box-2" title="{{ li.title }}" top-id="{{ li.top_id }}" song-platform="{{ result.alias }}">
+                                                <img class="mr-1" src="{{ li.src }}">{{ li.title }}
+                                            </div>
                                             {% else %}
-                                            <div class="top-box-2" title="{{ li.title }}" top-id="{{ li.top_id }}" song-platform="{{ result.alias }}">{{ li.title }}</div>
+                                            <div class="top-box-2" title="{{ li.title }}" top-id="{{ li.top_id }}" song-platform="{{ result.alias }}">
+                                                {{ li.title }}
+                                            </div>
                                             {% endif %}
                                         {% endfor %}
                                     </div>
