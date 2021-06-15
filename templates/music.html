@@ -26,27 +26,34 @@
                     <div style="background-color: #242424; border-bottom: 1px solid #131313;">
                         <div class="top-nav_group-1">
                             <div class="d-flex">
-                                <div class="align-self-center" style="margin: 5px 10px;">
-                                    <i class="iconfont icon-home" onclick="window.open('/')"></i></div>
-                                <div class="align-self-center" style="margin: 5px 10px;">
-                                    <i class="iconfont icon-music" style="color: #28a745;"></i></div>
-                                <div class="align-self-center" style="margin: 5px 10px;">
-                                    <i class="iconfont icon-poetry" onclick="window.open('/poetry')"></i></div>
-                                <div class="align-self-center" style="margin: 5px 10px;">
-                                    <i class="iconfont icon-image" onclick="window.open('/image')"></i></div>
-                                <div class="align-self-center" style="margin: 5px 10px;">
-                                    <i class="iconfont icon-video" onclick="window.open('/video')"></i></div>
-                                <div class="align-self-center ml-auto" style="margin: 5px 10px;">
+<!--                                <div class="align-self-center" style="margin: 5px 10px;" onclick="window.open('/')">-->
+<!--                                    <i class="iconfont icon-home"></i></div>-->
+<!--                                <div class="align-self-center" style="margin: 5px 10px;">-->
+<!--                                    <i class="iconfont icon-music" style="color: #28a745;"></i></div>-->
+<!--                                <div class="align-self-center" style="margin: 5px 10px;" onclick="window.open('/poetry')">-->
+<!--                                    <i class="iconfont icon-poetry"></i></div>-->
+<!--                                <div class="align-self-center" style="margin: 5px 10px;" onclick="window.open('/image')">-->
+<!--                                    <i class="iconfont icon-image"></i></div>-->
+<!--                                <div class="align-self-center" style="margin: 5px 10px;" onclick="window.open('/video')">-->
+<!--                                    <i class="iconfont icon-video"></i></div>-->
+<!--                                <div class="align-self-center ml-auto" style="margin: 5px 10px;">-->
+<!--                                    <i id="song-search" class="iconfont icon-search"></i></div>-->
+                                <div class="menu_btn" onclick="window.open('/')">首页</div>
+                                <div class="menu_btn active">音乐</div>
+                                <div class="menu_btn" onclick="window.open('/poetry')">诗词</div>
+                                <div class="menu_btn" onclick="window.open('/image')">图片</div>
+                                <div class="menu_btn" onclick="window.open('/video')">视频解析</div>
+                                <div class="align-self-center ml-auto" style="padding: 0px 10px;">
                                     <i id="song-search" class="iconfont icon-search"></i></div>
                             </div>
                         </div>
                         <div class="top-nav_group-2" style="display: none;">
                             <div class="d-flex">
-                                <div class="align-self-center" style="margin: 5px 10px;">
+                                <div class="align-self-center" style="padding: 0px 10px;">
                                     <i class="iconfont icon-search" style="color: #989898;"></i></div>
                                 <input id="s_song_name" type="text" class="border-0"
                                        style="width: 100%;" autocomplete="off" placeholder="歌曲搜索" />
-                                <div class="align-self-center" style="margin: 5px 10px;">
+                                <div class="align-self-center" style="padding: 0px 10px;">
                                     <i id="song-search-cancel" class="iconfont icon-cancel" style="font-size: 20px;"></i></div>
                             </div>
                         </div>

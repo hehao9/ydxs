@@ -240,3 +240,15 @@ input#s_song_name:focus {
 .default_content {
     padding: 10px 0px;
 }
+.menu_btn {
+    height: 30px;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: #9b9b9b;
+}
+.menu_btn:hover {
+    color: #e8e8e8;
+}
+.menu_btn.active {
+    color: #28a745!important;
+}

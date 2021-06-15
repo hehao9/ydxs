@@ -157,7 +157,7 @@ $(document).ready(function() {
         if ($('#' + song_platform + ' > div.search_content').css('display') == 'none') {
             $('#' + song_platform + ' > div.default_content').slideToggle('fast');
             $('#' + song_platform + ' > div.search_content').slideToggle('fast', function() {
-//                $('.s_song_tabs > div').getNiceScroll().resize();
+                $('.s_song_tabs > div').getNiceScroll().resize();
                 $('.icon-backward').addClass('active');
                 $('.icon-forward').removeClass('active');
             });
