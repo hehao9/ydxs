@@ -138,7 +138,7 @@ def image():
 @app.route('/image/list', methods=['post'])
 def image_list():
     db = Sqlite3DB()
-    results = db.query_data(f"select * from image_list where visitor_id = '{request.form['visitor_id']}'")
+    results = db.query_data(f"select * from image_list")
     db.close()
     return jsonify(results)
 
@@ -147,7 +147,7 @@ def image_list():
 @cross_origin()
 def image_list_add():
     db = Sqlite3DB()
-    db.insert_data("image_list", {'visitor_id': request.form['visitor_id'], 'link': request.form['link']})
+    db.insert_data("image_list", {'link': request.form['link']})
     db.close()
     return jsonify({'status': 1, 'msg': 'success'})
 

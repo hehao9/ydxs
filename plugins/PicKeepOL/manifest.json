@@ -1,13 +1,13 @@
 {
   "manifest_version": 2,
-  "name": "image",
+  "name": "PicKeepOL",
   "version": "1.0.0",
-  "description": "简单、快速地收藏你喜欢的图片。",
+  "description": "在线收藏整理图片",
   "icons": {
-    "84": "乌龟.png"
+    "48": "mushroom.png"
   },
   "browser_action": {
-    "default_icon": "乌龟.png",
+    "default_icon": "mushroom.png",
     "default_title": "图片收藏",
     "default_popup": "popup.html"
   },
@@ -20,26 +20,21 @@
   "content_scripts": [
     {
       "matches": [
-        "https://huaban.com/*"
+        "<all_urls>"
       ],
       "js": [
         "content.js"
       ],
       "css": [
         "style.css"
-      ],
-      "run_at": "document_idle"
+      ]
     }
   ],
-  "web_accessible_resources": [
-    "inject.js",
-    "fp.min.js"
-  ],
   "permissions": [
-    "contextMenus",
+    "activeTab",
+    "storage",
     "tabs",
-    "notifications",
-    "webRequestBlocking",
-    "storage"
-  ]
+    "contextMenus"
+  ],
+  "homepage_url": "https://www.baidu.com"
 }

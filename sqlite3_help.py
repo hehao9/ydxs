@@ -80,12 +80,12 @@ if __name__ == '__main__':
     #                                    'song_duration', 'song_album_pic', 'song_platform', 'song_album_id',
     #                                    'song_hash', 'song_mid'])
 
-    # db.execute('drop table image_list')
-    # db.create_table('image_list', ['visitor_id', 'link'])
+    db.execute('drop table image_list')
+    db.create_table('image_list', ['link'])
 
     # db.execute('drop table poetry_list')
     # db.create_table('poetry_list', ['title', 'author', 'content', 'type'])
 
-    print(db.query_data("select * from poetry_list"))
+    print(db.query_data("select * from image_list"))
 
     db.close()
