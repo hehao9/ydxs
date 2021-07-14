@@ -139,7 +139,6 @@ input#s_song_name:focus {
     display: none;
 }
 .s_song_tabs ul {
-    text-align: center;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -150,6 +149,7 @@ input#s_song_name:focus {
     padding: 6px 10px;
     display: block;
     cursor: pointer;
+    white-space: nowrap;
 }
 .s_song_tabs > ul > li > a:hover {
     color: #e8e8e8!important;

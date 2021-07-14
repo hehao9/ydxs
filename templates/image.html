@@ -13,31 +13,35 @@
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.nicescroll.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.tabslet.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/image.js') }}"></script>
 </head>
 <body>
-
+<div class="d-flex flex-column" style="position: fixed; top: 0; right: 0; left: 0; bottom: 0;">
+    <div class="d-flex">
+        <div class="d-flex flex-grow-1" style="background-color: #242424; border-bottom: 1px solid #131313;">
+            <div class="menu_btn" onclick="window.open('/')">首页</div>
+            <div class="menu_btn" onclick="window.open('/music')">音乐</div>
+            <div class="menu_btn" onclick="window.open('/poetry')">诗词</div>
+            <div class="menu_btn active">图片</div>
+            <div class="menu_btn" onclick="window.open('/video')">视频解析</div>
+        </div>
+    </div>
+    <div class="d-flex flex-grow-1 s_song_tabs">
+            <ul class="d-flex flex-column" style="border-right: 1px solid #131313;">
+                <li class=""><a target="#1">未分类</a></li>
+                <li class=""><a target="#2">全部</a></li>
+                <li class=""><a target="#3">人物</a></li>
+            </ul>
+            <div id="1" class="flex-grow-1">
+                未分类
+            </div>
+            <div id="2" class="flex-grow-1">
+                全部
+            </div>
+            <div id="3" class="flex-grow-1">
+                人物
+            </div>
+    </div>
+</div>
 </body>
-<script>
-  function initFingerprintJS() {
-    FingerprintJS.load().then(fp => {
-      fp.get().then(result => {
-        $('body').append('<input id="visitor_id" type="hidden" value="' + result.visitorId + '" />');
-      });
-    });
-  }
-</script>
-<script src="{{ url_for('static', filename='js/fp.min.js') }}" onload="initFingerprintJS()"></script>
-<script>
-    $(document).ready(function() {
-        setTimeout(function () {
-            $.post("/image/list", {visitor_id: $('#visitor_id').val()}, function(image_list){
-                var html = "";
-                $.each(image_list, function(i, v) {
-                    html += '<img src="' + v.link + '">';
-                });
-                $('body').append(html);
-            });
-        }, 500);
-    });
-</script>
 </html>

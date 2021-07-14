@@ -17,3 +17,6 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
             break;
     }
 });
+chrome.browserAction.onClicked.addListener(function(activeTab) {
+    chrome.tabs.create({ url: "http://localhost:5000/image" });
+});

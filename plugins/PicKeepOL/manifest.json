@@ -8,8 +8,7 @@
   },
   "browser_action": {
     "default_icon": "mushroom.png",
-    "default_title": "图片收藏",
-    "default_popup": "popup.html"
+    "default_title": "图片收藏"
   },
   "background": {
     "scripts": [
@@ -36,5 +35,5 @@
     "tabs",
     "contextMenus"
   ],
-  "homepage_url": "https://www.baidu.com"
+  "homepage_url": "http://localhost:5000/image"
 }
