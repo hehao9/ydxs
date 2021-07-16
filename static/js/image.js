@@ -11,4 +11,17 @@ $(document).ready(function() {
         });
         $($('.s_song_tabs > ul > li.active > a').attr('target') + ' > div').html(html);
     });
+    $('.icon-add').click(function() {
+        var html = '<li>' +
+                        '<a class="d-flex" target="#uuid" style="padding: 0px 10px;">' +
+                            '<div class="align-self-center" style="margin-right: 5px;"><i class="iconfont icon-files"></i></div>' +
+                            '<div class="align-self-center">' +
+                                '<input id="s_song_name" type="text" class="border-0" style="width: 100%; background-color: inherit;" autocomplete="off">' +
+                            '</div>' +
+                            '<div class="align-self-center ml-auto"><i class="iconfont icon-confirm"></i></div>' +
+                        '</a>'
+                    '</li>'
+        $('.s_song_tabs > ul').append(html);
+        $('#s_song_name').focus()
+    });
 });

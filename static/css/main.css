@@ -73,7 +73,7 @@ input#s_song_name:focus {
 .icon-add:hover, .icon-volume-0:hover, .icon-volume-1:hover, .icon-menu:hover, .icon-search:hover,
 .icon-lyric:hover, .icon-lyric1:hover, .icon-prev:hover, .icon-play:hover, .icon-pause:hover, .icon-next:hover,
 .icon-single-loop:hover, .icon-list-loop:hover, .icon-playlist:hover, .icon-cancel:hover, .icon-del:hover,
-.icon-home:hover, .icon-music:hover, .icon-poetry:hover, .icon-image:hover, .icon-video:hover {
+.icon-home:hover, .icon-music:hover, .icon-poetry:hover, .icon-image:hover, .icon-video:hover, .icon-confirm:hover {
     color: #e8e8e8;
 }
 .icon-del {
@@ -88,7 +88,7 @@ input#s_song_name:focus {
     color: #989898;
     cursor: pointer;
 }
-.icon-volume-0, .icon-volume-1, .icon-cancel, .icon-add {
+.icon-volume-0, .icon-volume-1, .icon-cancel, .icon-add, .icon-confirm {
     font-size: 12px;
     color: #989898;
     cursor: pointer;

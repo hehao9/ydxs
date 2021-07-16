@@ -7,7 +7,7 @@
     <title>图片</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/mushroom.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="https://at.alicdn.com/t/font_2393058_rysdi9ban5.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_2393058_w7y05rup45.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="d-flex flex-grow-1 s_song_tabs">
-            <ul class="d-flex flex-column" style="width: 12%;">
+            <ul class="d-flex flex-column" style="width: 15%;">
                 <div class="d-flex justify-content-between" style="padding: 6px 10px;">
                     <div class="align-self-center">分类文件夹</div>
                     <div class="align-self-center"><i class="iconfont icon-add" title="新增分类"></i></div>
@@ -44,7 +44,7 @@
                 {% endfor %}
             </ul>
             {% for result in results %}
-            <div id="{{ result.id }}" style="padding: 10px; width: 88%;">
+            <div id="{{ result.id }}" style="padding: 10px; width: 85%;">
                 <div class="d-flex flex-wrap"></div>
             </div>
             {% endfor %}
