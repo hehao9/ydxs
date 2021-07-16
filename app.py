@@ -1,3 +1,4 @@
+import datetime
 from flask import Flask, jsonify, request
 from flask import render_template
 from flask_cors import cross_origin
@@ -132,13 +133,17 @@ def music_detail():
 
 @app.route('/image')
 def image():
-    return render_template('image.html')
+    db = Sqlite3DB()
+    results = db.query_data("select distinct a.id, a.name, (select count(1) from image_list b where b.cat_tag = a.id) as count from image_cat_tag a")
+    db.close()
+    return render_template('image.html', results=results)
 
 
 @app.route('/image/list', methods=['post'])
 def image_list():
     db = Sqlite3DB()
-    results = db.query_data(f"select * from image_list")
+    cat_tag = request.form['cat_tag']
+    results = db.query_data(f"select * from image_list where cat_tag = '{cat_tag}'")
     db.close()
     return jsonify(results)
 
@@ -147,7 +152,9 @@ def image_list():
 @cross_origin()
 def image_list_add():
     db = Sqlite3DB()
-    db.insert_data("image_list", {'link': request.form['link']})
+    db.insert_data("image_list", {'cat_tag': '0',
+                                  'link': request.form['link'],
+                                  'create_time': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')})
     db.close()
     return jsonify({'status': 1, 'msg': 'success'})
 

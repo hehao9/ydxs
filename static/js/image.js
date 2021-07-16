@@ -4,11 +4,11 @@ $(document).ready(function() {
         attribute: 'target',
         animation: false
     });
-    $.post("/image/list", {visitor_id: ''}, function(image_list){
+    $.post("/image/list", {cat_tag: $('.s_song_tabs > ul > li.active > a').attr('target').replace('#', '')}, function(image_list){
         var html = "";
         $.each(image_list, function(i, v) {
-            html += '<img src="' + v.link + '">';
+            html += '<img style="margin: 10px;" height="150" src="' + v.link + '">';
         });
-        $($('.s_song_tabs > ul > li.active > a').attr('target')).html(html);
+        $($('.s_song_tabs > ul > li.active > a').attr('target') + ' > div').html(html);
     });
 });

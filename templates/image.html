@@ -7,6 +7,7 @@
     <title>图片</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/mushroom.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_2393058_rysdi9ban5.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
@@ -27,20 +28,26 @@
         </div>
     </div>
     <div class="d-flex flex-grow-1 s_song_tabs">
-            <ul class="d-flex flex-column" style="border-right: 1px solid #131313;">
-                <li class=""><a target="#1">未分类</a></li>
-                <li class=""><a target="#2">全部</a></li>
-                <li class=""><a target="#3">人物</a></li>
+            <ul class="d-flex flex-column" style="width: 12%;">
+                <div class="d-flex justify-content-between" style="padding: 6px 10px;">
+                    <div class="align-self-center">分类文件夹</div>
+                    <div class="align-self-center"><i class="iconfont icon-add" title="新增分类"></i></div>
+                </div>
+                {% for result in results %}
+                <li>
+                    <a class="d-flex" target="#{{ result.id }}" style="padding: 0px 10px;">
+                        <div class="align-self-center" style="margin-right: 5px;"><i class="iconfont icon-files"></i></div>
+                        <div class="align-self-center">{{ result.name }}</div>
+                        <div class="align-self-center ml-auto" style="margin-right: 3px;">{{ result.count }}</div>
+                    </a>
+                </li>
+                {% endfor %}
             </ul>
-            <div id="1" class="flex-grow-1">
-                未分类
+            {% for result in results %}
+            <div id="{{ result.id }}" style="padding: 10px; width: 88%;">
+                <div class="d-flex flex-wrap"></div>
             </div>
-            <div id="2" class="flex-grow-1">
-                全部
-            </div>
-            <div id="3" class="flex-grow-1">
-                人物
-            </div>
+            {% endfor %}
     </div>
 </div>
 </body>
