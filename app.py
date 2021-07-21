@@ -159,6 +159,14 @@ def image_list_add():
     return jsonify({'status': 1, 'msg': 'success'})
 
 
+@app.route('/image/cat_tag/add', methods=['post'])
+def image_cat_tag_add():
+    db = Sqlite3DB()
+    db.insert_data('image_cat_tag', {'id': request.form['id'], 'name': request.form['name']})
+    db.close()
+    return jsonify({'status': 1, 'msg': 'success'})
+
+
 @app.route('/poetry')
 def poetry():
     db = Sqlite3DB()

@@ -4,12 +4,21 @@ $(document).ready(function() {
         attribute: 'target',
         animation: false
     });
+    $('.s_song_tabs > div').niceScroll({
+        cursorcolor: "#444",
+        cursorwidth: 4,
+        cursorborder: 0,
+        cursorborderradius: 0,
+    });
+    $('.s_song_tabs').on("_after", function() {
+        $('.s_song_tabs > div').getNiceScroll().resize();
+    });
     $.post("/image/list", {cat_tag: $('.s_song_tabs > ul > li.active > a').attr('target').replace('#', '')}, function(image_list){
-        var html = "";
         $.each(image_list, function(i, v) {
-            html += '<img style="margin: 10px;" height="150" src="' + v.link + '">';
+            var html = '<div class="img-box"><img src="' + v.link + '"></div>';
+            var tab_id = $('.s_song_tabs > ul > li.active > a').attr('target')
+            $(tab_id + ' > div > div:nth-child('+(i%4+1)+')').append(html);
         });
-        $($('.s_song_tabs > ul > li.active > a').attr('target') + ' > div').html(html);
     });
     $('.icon-add').click(function() {
         var html = '<li>' +
@@ -23,5 +32,14 @@ $(document).ready(function() {
                     '</li>'
         $('.s_song_tabs > ul').append(html);
         $('#s_song_name').focus()
+        $('.icon-confirm').click(function() {
+            if($('#s_song_name').val() == '') {
+                $('#s_song_name').focus();
+            } else {
+                $.post("/image/cat_tag/add", {id: '1', name: $('#s_song_name').val()}, function(res){
+                    location.reload();
+                });
+            }
+        });
     });
 });

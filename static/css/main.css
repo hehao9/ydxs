@@ -252,3 +252,15 @@ input#s_song_name:focus {
 .menu_btn.active {
     color: #28a745!important;
 }
+.img-box {
+    padding: 6px;
+}
+.img-box img:hover {
+    border-color: #28a745;
+}
+.img-box img {
+    width: 100%;
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+}
