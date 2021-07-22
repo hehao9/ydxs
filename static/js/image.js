@@ -16,7 +16,7 @@ $(document).ready(function() {
     $.post("/image/list", {cat_tag: $('.s_song_tabs > ul > li.active > a').attr('target').replace('#', '')}, function(image_list){
         $.each(image_list, function(i, v) {
             var html = '<div class="img-box"><img src="' + v.link + '"></div>';
-            var tab_id = $('.s_song_tabs > ul > li.active > a').attr('target')
+            var tab_id = $('.s_song_tabs > ul > li.active > a').attr('target');
             $(tab_id + ' > div > div:nth-child('+(i%4+1)+')').append(html);
         });
     });
@@ -29,9 +29,9 @@ $(document).ready(function() {
                             '</div>' +
                             '<div class="align-self-center ml-auto"><i class="iconfont icon-confirm"></i></div>' +
                         '</a>'
-                    '</li>'
+                    '</li>';
         $('.s_song_tabs > ul').append(html);
-        $('#s_song_name').focus()
+        $('#s_song_name').focus();
         $('.icon-confirm').click(function() {
             if($('#s_song_name').val() == '') {
                 $('#s_song_name').focus();
