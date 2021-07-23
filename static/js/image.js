@@ -19,6 +19,9 @@ $(document).ready(function() {
             var tab_id = $('.s_song_tabs > ul > li.active > a').attr('target');
             $(tab_id + ' > div > div:nth-child('+(i%4+1)+')').append(html);
         });
+        var preview = new Preview({
+            imgWrap: 'wrap' // 指定该容器里的图片点击预览
+        })
     });
     $('.icon-add').click(function() {
         var html = '<li>' +
