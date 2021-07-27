@@ -8,7 +8,6 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/mushroom.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2393058_w7y05rup45.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/preview.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
@@ -16,7 +15,6 @@
     <script src="{{ url_for('static', filename='js/jquery.nicescroll.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.tabslet.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/image.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/preview.js') }}"></script>
 </head>
 <body>
 <div class="d-flex flex-column" style="position: fixed; top: 0; right: 0; left: 0; bottom: 0;">
@@ -29,7 +27,7 @@
             <div class="menu_btn" onclick="window.open('/video')">视频解析</div>
         </div>
     </div>
-    <div class="d-flex flex-grow-1" style="height: 100%;">
+    <div class="d-flex flex-grow-1" style="overflow: hidden;">
         <div class="d-flex s_song_tabs" style="width: 82%;">
             <ul class="d-flex flex-column" style="width: 18%;">
                 <div class="d-flex justify-content-between" style="padding: 6px 10px;">
@@ -49,10 +47,6 @@
             {% for result in results %}
             <div id="{{ result.id }}" style="padding: 6px; width: 82%;">
                 <div class="d-flex" id="wrap">
-<!--                    <div class="flex-fill"></div>-->
-<!--                    <div class="flex-fill"></div>-->
-<!--                    <div class="flex-fill"></div>-->
-<!--                    <div class="flex-fill"></div>-->
                     <div style="width: 25%;"></div>
                     <div style="width: 25%;"></div>
                     <div style="width: 25%;"></div>
