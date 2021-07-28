@@ -15,7 +15,18 @@ $(document).ready(function() {
     });
     $.post("/image/list", {cat_tag: $('.s_song_tabs > ul > li.active > a').attr('target').replace('#', '')}, function(image_list){
         $.each(image_list, function(i, v) {
-            var html = '<div class="img-box"><img src="' + v.link + '"></div>';
+            var html = '<div class="img-box">' +
+                           '<img src="' + v.link + '">' +
+                           '<div class="dropright">' +
+                               '<div class="dropdown-toggle" data-toggle="dropdown">' +
+                                   '<i class="iconfont icon-sandian"></i>' +
+                               '</div>' +
+                               '<div class="dropdown-menu">' +
+                                   '<a class="dropdown-item" href="#">移动至</a>' +
+                                   '<a class="dropdown-item" href="#">删除</a>' +
+                               '</div>' +
+                           '</div>' +
+                       '</div>';
             var tab_id = $('.s_song_tabs > ul > li.active > a').attr('target');
             $(tab_id + ' > div > div:nth-child('+(i%4+1)+')').append(html);
         });
@@ -41,5 +52,16 @@ $(document).ready(function() {
                 });
             }
         });
+    });
+    $('.icon-sub').click(function() {
+        cat_tag_image_count = $('.s_song_tabs > ul > li.active > a > div.ml-auto').text();
+        if (cat_tag_image_count > 0) {
+            var html = '<div class="alert-danger-custom" style="z-index: 1;">不能删除非空文件夹!</div>';
+            $('.s_song_tabs > ul').append(html);
+        } else {
+            $.post("/image/cat_tag/del", {id: $('.s_song_tabs > ul > li.active > a').attr('target').replace('#', '')}, function(res){
+                location.reload();
+            });
+        }
     });
 });

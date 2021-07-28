@@ -86,7 +86,7 @@ if __name__ == '__main__':
 
     # db.execute('drop table image_cat_tag')
     # db.create_table('image_cat_tag', ['id', 'name'])
-    # db.insert_data('image_cat_tag', {'id': '0', 'name': '未分类'})
+    # db.insert_data('image_cat_tag', {'id': '0', 'name': '默认'})
 
     # db.execute('drop table poetry_list')
     # db.create_table('poetry_list', ['title', 'author', 'content', 'type'])

@@ -1,4 +1,6 @@
 import datetime
+import random
+import string
 from flask import Flask, jsonify, request
 from flask import render_template
 from flask_cors import cross_origin
@@ -162,7 +164,16 @@ def image_list_add():
 @app.route('/image/cat_tag/add', methods=['post'])
 def image_cat_tag_add():
     db = Sqlite3DB()
-    db.insert_data('image_cat_tag', {'id': request.form['id'], 'name': request.form['name']})
+    id_str = ''.join(random.sample(string.ascii_letters + string.digits, 6))
+    db.insert_data('image_cat_tag', {'id': id_str, 'name': request.form['name']})
+    db.close()
+    return jsonify({'status': 1, 'msg': 'success'})
+
+
+@app.route('/image/cat_tag/del', methods=['post'])
+def image_cat_tag_del():
+    db = Sqlite3DB()
+    db.execute(f'delete from image_cat_tag where id = "{request.form["id"]}";')
     db.close()
     return jsonify({'status': 1, 'msg': 'success'})
 
