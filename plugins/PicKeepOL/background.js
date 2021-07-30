@@ -12,7 +12,7 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
             fetch('http://localhost:5000/image/list/add', {method:"POST", body:formData})
             .then(res => res.json())
             .then(res => {
-                alert(res.status)
+                alert(res.msg);
             })
             break;
     }

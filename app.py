@@ -154,11 +154,24 @@ def image_list():
 @cross_origin()
 def image_list_add():
     db = Sqlite3DB()
-    db.insert_data("image_list", {'cat_tag': '0',
-                                  'link': request.form['link'],
-                                  'create_time': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')})
+    results = db.query_data(f"select * from image_list where link = '{request.form['link']}'")
+    if len(results) > 0:
+        db.close()
+        return jsonify({'status': 0, 'msg': '重复收藏！'})
+    else:
+        db.insert_data("image_list", {'cat_tag': '0',
+                                      'link': request.form['link'],
+                                      'create_time': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')})
+        db.close()
+        return jsonify({'status': 1, 'msg': '收藏成功！'})
+
+
+@app.route('/image/list/del', methods=['post'])
+def image_list_del():
+    db = Sqlite3DB()
+    db.execute(f'delete from image_list where link = "{request.form["link"]}";')
     db.close()
-    return jsonify({'status': 1, 'msg': 'success'})
+    return jsonify({'status': 1, 'msg': '删除成功！'})
 
 
 @app.route('/image/cat_tag/add', methods=['post'])

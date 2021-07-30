@@ -46,6 +46,7 @@
                     </a>
                 </li>
                 {% endfor %}
+                <div class="alert-danger-custom" style="display: none;">不能删除非空文件夹!</div>
             </ul>
             {% for result in results %}
             <div id="{{ result.id }}" style="width: 82%;">
