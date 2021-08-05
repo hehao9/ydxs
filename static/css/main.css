@@ -254,7 +254,6 @@ input#s_song_name:focus {
 }
 .img-box {
     margin: 0px 10px 10px 0px;
-    position: relative;
     overflow: hidden;
 }
 .img-box img:hover {
@@ -272,48 +271,6 @@ input#s_song_name:focus {
     -webkit-transition: all 0.4s linear;
     transition: all 0.4s linear;
 }
-.img-box > .dropright {
-    top: 6px;
-    left: 2px;
-    color: #28a745;
-    position: absolute;
-    cursor: pointer;
-    display: none;
-}
-.img-box > img:hover + .dropright, .img-box > .dropright:hover {
-    display: block;
-}
-.img-box > .dropright .dropdown-toggle::after {
-    display: none;
-}
-.img-box > .dropright > .dropdown-menu,
-.img-box > .dropright > .dropdown-menu > .dropright > .dropdown-menu {
-    padding: 0px;
-    min-width: unset;
-    font-size: 12px;
-    border: 0;
-    border-radius: 0;
-    background-color: #242424;
-    background-clip: unset;
-    margin: 0px;
-}
-.img-box > .dropright > .dropdown-toggle{
-    line-height: initial;
-}
-.img-box > .dropright > .dropdown-menu > .dropdown-item,
-.img-box > .dropright > .dropdown-menu > .dropright > .dropdown-menu > .dropdown-item {
-    padding: 3px 15px;
-    color: #9b9b9b;
-}
-.img-box > .dropright > .dropdown-menu > .dropdown-item:hover,
-.img-box > .dropright > .dropdown-menu > .dropdown-item:focus,
-.img-box > .dropright > .dropdown-menu > .dropright > .dropdown-menu > .dropdown-item:hover,
-.img-box > .dropright > .dropdown-menu > .dropright > .dropdown-menu > .dropdown-item:focus {
-    background-color: #1b1b1c!important;
-}
-.alert-danger-custom {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    text-align: center;
+.img-box.active {
+    border: 2px solid green;
 }

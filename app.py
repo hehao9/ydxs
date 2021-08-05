@@ -8,6 +8,10 @@ import netease_cloud_music
 import kugou_music
 import qq_music
 from sqlite3_help import Sqlite3DB
+import io
+from io import BytesIO
+from PIL import Image
+import requests
 
 app = Flask(__name__)
 
@@ -145,7 +149,7 @@ def image():
 def image_list():
     db = Sqlite3DB()
     cat_tag = request.form['cat_tag']
-    results = db.query_data(f"select * from image_list where cat_tag = '{cat_tag}'")
+    results = db.query_data(f"select a.*, b.name cat from image_list a left join image_cat_tag b on a.cat_tag = b.id where a.cat_tag = '{cat_tag}'")
     db.close()
     return jsonify(results)
 
@@ -159,8 +163,13 @@ def image_list_add():
         db.close()
         return jsonify({'status': 0, 'msg': '重复收藏！'})
     else:
+        res = requests.get(request.form['link']).content
+        img = Image.open(BytesIO(res))
         db.insert_data("image_list", {'cat_tag': '0',
                                       'link': request.form['link'],
+                                      'size': f'{img.width} × {img.height}',
+                                      'file_size': f'{round(len(io.BytesIO(res).read()) / 1000)} KB',
+                                      'type': img.format,
                                       'create_time': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')})
         db.close()
         return jsonify({'status': 1, 'msg': '收藏成功！'})

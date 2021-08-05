@@ -1,3 +1,10 @@
+var image_del = function(src_link) {
+    $.post("/image/list/del", {link: src_link}, function(res) {
+        if (res.status == 1) {
+            $('img[src="'+src_link+'"]').parent('.img-box').remove();
+        }
+    });
+}
 $(document).ready(function() {
     $('.s_song_tabs').tabslet({
         mouseevent: 'click',
@@ -13,22 +20,22 @@ $(document).ready(function() {
     $('.s_song_tabs').on("_after", function() {
         $('.s_song_tabs > div').getNiceScroll().resize();
     });
-    $.post("/image/list", {cat_tag: $('.s_song_tabs > ul > li.active > a').attr('target').replace('#', '')}, function(image_list){
+    $.post("/image/list", {cat_tag: $('.s_song_tabs > ul > li.active > a').attr('target').replace('#', '')}, function(image_list) {
+        var tab_id = $('.s_song_tabs > ul > li.active > a').attr('target');
         $.each(image_list, function(i, v) {
             var html = '<div class="img-box">' +
-                           '<img src="' + v.link + '">' +
-                           '<div class="dropright">' +
-                               '<div class="dropdown-toggle" data-toggle="dropdown">' +
-                                   '<i class="iconfont icon-sandian"></i>' +
-                               '</div>' +
-                               '<div class="dropdown-menu">' +
-                                   '<a class="dropdown-item" href="#">移动至</a>' +
-                                   '<a class="dropdown-item" href="#">删除</a>' +
-                               '</div>' +
-                           '</div>' +
+                           '<img src="' + v.link + '" cat="' + v.cat + '" size="' + v.size + '" file_size="' + v.file_size + '" type="' + v.type + '" create_time="' + v.create_time + '">' +
                        '</div>';
-            var tab_id = $('.s_song_tabs > ul > li.active > a').attr('target');
             $(tab_id + ' > div > div:nth-child('+(i%4+1)+')').append(html);
+        });
+        $('.img-box').click(function() {
+            $('.img-box').removeClass('active');
+            $(this).addClass('active');
+            $('#img-cat').html($(this).find('img').attr('cat'));
+            $('#img-size').html($(this).find('img').attr('size'));
+            $('#img-f-size').html($(this).find('img').attr('file_size'));
+            $('#img-type').html($(this).find('img').attr('type'));
+            $('#img-ct').html($(this).find('img').attr('create_time'));
         });
     });
     $('.icon-add').click(function() {
@@ -47,7 +54,7 @@ $(document).ready(function() {
             if($('#s_song_name').val() == '') {
                 $('#s_song_name').focus();
             } else {
-                $.post("/image/cat_tag/add", {id: '1', name: $('#s_song_name').val()}, function(res){
+                $.post("/image/cat_tag/add", {id: '1', name: $('#s_song_name').val()}, function(res) {
                     location.reload();
                 });
             }
@@ -56,10 +63,12 @@ $(document).ready(function() {
     $('.icon-sub').click(function() {
         cat_tag_image_count = $('.s_song_tabs > ul > li.active > a > div.ml-auto').text();
         if (cat_tag_image_count > 0) {
-            var html = '<div class="alert-danger-custom" style="z-index: 1;">不能删除非空文件夹!</div>';
-            $('.s_song_tabs > ul').append(html);
+            $('.s_song_tabs > ul > div.alert-danger-custom').fadeIn('fast');
+            setTimeout(function () {
+                $('.s_song_tabs > ul > div.alert-danger-custom').fadeOut('slow');
+            }, 2000);
         } else {
-            $.post("/image/cat_tag/del", {id: $('.s_song_tabs > ul > li.active > a').attr('target').replace('#', '')}, function(res){
+            $.post("/image/cat_tag/del", {id: $('.s_song_tabs > ul > li.active > a').attr('target').replace('#', '')}, function(res) {
                 location.reload();
             });
         }

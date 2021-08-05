@@ -82,7 +82,7 @@ if __name__ == '__main__':
     #                                    'song_hash', 'song_mid'])
 
     # db.execute('drop table image_list')
-    # db.create_table('image_list', ['cat_tag', 'link', 'create_time'])
+    # db.create_table('image_list', ['cat_tag', 'link', 'size', 'file_size', 'type', 'create_time'])
 
     # db.execute('drop table image_cat_tag')
     # db.create_table('image_cat_tag', ['id', 'name'])
@@ -91,6 +91,6 @@ if __name__ == '__main__':
     # db.execute('drop table poetry_list')
     # db.create_table('poetry_list', ['title', 'author', 'content', 'type'])
 
-    print(db.query_data("select distinct a.id, a.name, (select count(1) from image_list b where b.cat_tag = a.id) as count from image_cat_tag a"))
+    print(db.query_data("select * from image_list"))
 
     db.close()
