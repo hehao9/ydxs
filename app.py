@@ -170,7 +170,7 @@ def image_list_add():
                                       'size': f'{img.width} × {img.height}',
                                       'file_size': f'{round(len(io.BytesIO(res).read()) / 1000)} KB',
                                       'type': img.format,
-                                      'create_time': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')})
+                                      'create_time': datetime.datetime.now().strftime('%Y-%m-%d %H:%M')})
         db.close()
         return jsonify({'status': 1, 'msg': '收藏成功！'})
 
