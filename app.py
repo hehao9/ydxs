@@ -183,6 +183,14 @@ def image_list_del():
     return jsonify({'status': 1, 'msg': '删除成功！'})
 
 
+@app.route('/image/list/cat/change', methods=['post'])
+def image_list_cat_change():
+    db = Sqlite3DB()
+    db.execute(f'update image_list set cat_tag = "{request.form["cat_tag"]}" where link = "{request.form["link"]}";')
+    db.close()
+    return jsonify({'status': 1, 'msg': '删除成功！'})
+
+
 @app.route('/image/cat_tag/add', methods=['post'])
 def image_cat_tag_add():
     db = Sqlite3DB()

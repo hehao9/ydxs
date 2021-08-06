@@ -274,3 +274,23 @@ input#s_song_name:focus {
 .img-box.active {
     border: 2px solid green;
 }
+.custom-btn {
+    text-align: center;
+    background-color: #353535;
+    padding: 0px 5px;
+    cursor: pointer;
+    color: #9b9b9b;
+}
+.custom-btn:hover {
+    color: #e8e8e8;
+}
+.custom-sel {
+    color: #9b9b9b;
+    background-color: #353535;
+    border: none;
+    display: none;
+}
+.custom-sel:focus {
+    outline: 0;
+    box-shadow: none!important;
+}

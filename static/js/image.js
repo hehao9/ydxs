@@ -1,10 +1,3 @@
-var image_del = function(src_link) {
-    $.post("/image/list/del", {link: src_link}, function(res) {
-        if (res.status == 1) {
-            $('img[src="'+src_link+'"]').parent('.img-box').remove();
-        }
-    });
-}
 $(document).ready(function() {
     $('.s_song_tabs').tabslet({
         mouseevent: 'click',
@@ -17,26 +10,34 @@ $(document).ready(function() {
         cursorborder: 0,
         cursorborderradius: 0,
     });
+    var load_cat_img_list = function(tab_id){
+        $.post("/image/list", {cat_tag: tab_id.replace('#', '')}, function(image_list) {
+            $(tab_id + ' > div').html('<div style="width: 25%;"></div><div style="width: 25%;"></div><div style="width: 25%;"></div><div style="width: 25%;"></div>');
+            $.each(image_list, function(i, v) {
+                var html = '<div class="img-box">' +
+                               '<img src="' + v.link + '" cat="' + v.cat + '" size="' + v.size + '" file_size="' + v.file_size + '" type="' + v.type + '" create_time="' + v.create_time + '">' +
+                           '</div>';
+                $(tab_id + ' > div > div:nth-child('+(i%4+1)+')').append(html);
+            });
+            $('.s_song_tabs > div').getNiceScroll().resize();
+            $('.img-box').click(function() {
+                $('.img-box').removeClass('active');
+                $(this).addClass('active');
+                var img_cat = $(this).find('img').attr('cat');
+                $('#img-cat').html(img_cat);
+                $('#img-cat-sel').find('option:contains("'+img_cat+'")').attr("selected", true);
+                $('#img-size').html($(this).find('img').attr('size'));
+                $('#img-f-size').html($(this).find('img').attr('file_size'));
+                $('#img-type').html($(this).find('img').attr('type'));
+                $('#img-ct').html($(this).find('img').attr('create_time'));
+                $('#img-del').attr('cur_src', $(this).find('img').attr('src'));
+                $('#img-cat-change').attr('cur_src', $(this).find('img').attr('src'));
+            });
+        });
+    }
+    load_cat_img_list($('.s_song_tabs > ul > li.active > a').attr('target'));
     $('.s_song_tabs').on("_after", function() {
-        $('.s_song_tabs > div').getNiceScroll().resize();
-    });
-    $.post("/image/list", {cat_tag: $('.s_song_tabs > ul > li.active > a').attr('target').replace('#', '')}, function(image_list) {
-        var tab_id = $('.s_song_tabs > ul > li.active > a').attr('target');
-        $.each(image_list, function(i, v) {
-            var html = '<div class="img-box">' +
-                           '<img src="' + v.link + '" cat="' + v.cat + '" size="' + v.size + '" file_size="' + v.file_size + '" type="' + v.type + '" create_time="' + v.create_time + '">' +
-                       '</div>';
-            $(tab_id + ' > div > div:nth-child('+(i%4+1)+')').append(html);
-        });
-        $('.img-box').click(function() {
-            $('.img-box').removeClass('active');
-            $(this).addClass('active');
-            $('#img-cat').html($(this).find('img').attr('cat'));
-            $('#img-size').html($(this).find('img').attr('size'));
-            $('#img-f-size').html($(this).find('img').attr('file_size'));
-            $('#img-type').html($(this).find('img').attr('type'));
-            $('#img-ct').html($(this).find('img').attr('create_time'));
-        });
+        load_cat_img_list($('.s_song_tabs > ul > li.active > a').attr('target'));
     });
     $('.icon-add').click(function() {
         var html = '<li>' +
@@ -72,5 +73,28 @@ $(document).ready(function() {
                 location.reload();
             });
         }
+    });
+    $('#img-cat-change').click(function() {
+        if ($(this).html() == '修改') {
+            $('#img-cat').hide();
+            $('#img-cat-sel').show();
+            $(this).html('确定');
+        } else {
+            $.post("/image/list/cat/change", {link: $(this).attr('cur_src'), cat_tag: $("#img-cat-sel").val()}, function(res) {
+                if (res.status == 1) {
+                    location.reload();
+                }
+            });
+//            $('#img-cat-sel').hide();
+//            $('#img-cat').show();
+//            $(this).html('修改');
+        }
+    });
+    $('#img-del').click(function() {
+        $.post("/image/list/del", {link: $(this).attr('cur_src')}, function(res) {
+            if (res.status == 1) {
+                location.reload();
+            }
+        });
     });
 });
