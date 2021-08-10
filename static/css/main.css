@@ -294,3 +294,8 @@ input#s_song_name:focus {
     outline: 0;
     box-shadow: none!important;
 }
+.alert-danger-custom {
+    text-align: center;
+    color: #721c24;
+    background-color: #f8d7da;
+}
