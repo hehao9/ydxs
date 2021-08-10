@@ -145,6 +145,14 @@ def image():
     return render_template('image.html', results=results)
 
 
+@app.route('/image/list/cat_tag', methods=['post'])
+def image_list_cat_tag():
+    db = Sqlite3DB()
+    results = db.query_data(f"select distinct id, name from image_cat_tag")
+    db.close()
+    return jsonify(results)
+
+
 @app.route('/image/list', methods=['post'])
 def image_list():
     db = Sqlite3DB()
@@ -165,7 +173,7 @@ def image_list_add():
     else:
         res = requests.get(request.form['link']).content
         img = Image.open(BytesIO(res))
-        db.insert_data("image_list", {'cat_tag': '0',
+        db.insert_data("image_list", {'cat_tag': request.form['cat_tag'],
                                       'link': request.form['link'],
                                       'size': f'{img.width} × {img.height}',
                                       'file_size': f'{round(len(io.BytesIO(res).read()) / 1000)} KB',

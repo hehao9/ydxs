@@ -91,6 +91,6 @@ if __name__ == '__main__':
     # db.execute('drop table poetry_list')
     # db.create_table('poetry_list', ['title', 'author', 'content', 'type'])
 
-    print(db.query_data("select * from image_list"))
+    print(db.query_data("select * from image_cat_tag"))
 
     db.close()
