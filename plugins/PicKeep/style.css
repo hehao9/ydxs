@@ -1,0 +1,75 @@
+body {
+    color: #333;
+}
+#home-page {
+    font-size: 15px;
+    cursor: pointer;
+}
+#home-page:hover {
+    color: #000;
+}
+.row {
+    display: flex;
+    justify-content: space-between!important;
+    white-space: nowrap;
+    margin: 10px 15px;
+}
+.row div {
+    align-self: center!important;
+}
+.switch-block {
+    margin-left: 10px;
+}
+.switch-block.off {
+    width: 48px;
+    height: 20px;
+    border: 1px solid #d2d2d2;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #fff;
+    color: #999;
+    display: flex;
+    justify-content: space-between!important;
+}
+.switch-block.off .on {
+    display: none;
+}
+.switch-block.off .switch-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    background-color: #d2d2d2;
+    margin: 0px 3px;
+}
+.switch-block.off .off {
+    margin-right: 4px;
+}
+
+.switch-block.on {
+    width: 48px;
+    height: 20px;
+    border: 1px solid #28a745;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #28a745;
+    color: #fff;
+    display: flex;
+    justify-content: space-between!important;
+}
+.switch-block.on .on {
+    margin-left: 4px;
+}
+.switch-block.on .switch-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    background-color: #fff;
+    margin: 0px 3px;
+}
+.switch-block.on .off {
+    display: none;
+}
+
+.switch-block.off div, .switch-block.on div {
+    align-self: center!important;
+}

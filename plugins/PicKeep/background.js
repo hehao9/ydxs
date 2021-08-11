@@ -1,3 +1,4 @@
+var server_ip = '139.155.48.172';
 function create_menu(){
     chrome.contextMenus.removeAll();
     chrome.contextMenus.create({
@@ -34,16 +35,16 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
             let formData = new FormData();
             formData.append('link', info.srcUrl);
             formData.append('cat_tag', info.menuItemId);
-            fetch('http://localhost:5000/image/list/add', {method:"POST", body:formData})
+            fetch('http://'+server_ip+':5000/image/list/add', {method:"POST", body:formData})
             .then(res => res.json())
             .then(res => {
                 if(res.status != 1) {
                     alert(res.msg);
                 }
-            })
+            });
             break;
     }
 });
-chrome.browserAction.onClicked.addListener(function(activeTab) {
-    chrome.tabs.create({ url: "http://localhost:5000/image" });
+chrome.extension.onMessage.addListener(function (request, sender, callback){
+    server_ip = request.server_ip;
 });
