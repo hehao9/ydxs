@@ -12,7 +12,7 @@ function create_menu(){
         type : 'separator',
         contexts: ['image']
     });
-    fetch('http://localhost:5000/image/list/cat_tag', {method:"POST"})
+    fetch('http://'+server_ip+':5000/image/list/cat_tag', {method:"POST"})
     .then(res => res.json())
     .then(res => {
         res.forEach(li => {
