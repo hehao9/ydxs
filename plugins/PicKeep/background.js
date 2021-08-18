@@ -45,6 +45,6 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
             break;
     }
 });
-chrome.extension.onMessage.addListener(function (request, sender, callback){
+chrome.extension.onMessage.addListener(function (request, sender, callback) {
     server_ip = request.server_ip;
 });
