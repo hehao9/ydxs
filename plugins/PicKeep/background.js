@@ -38,7 +38,7 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
             fetch('http://'+server_ip+':5000/image/list/add', {method:"POST", body:formData})
             .then(res => res.json())
             .then(res => {
-                if(res.status != 1) {
+                if (res.status != 1) {
                     alert(res.msg);
                 }
             });
